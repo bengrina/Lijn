@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">104</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">f7064d67-c22c-42f4-bbdd-53e1b01cd846</dc:identifier>
+        <dc:title>La Théorie du Grain de Sable</dc:title>
+        <dc:creator opf:file-as="Bec, Christophe &amp; Raffaele, Stefano" opf:role="aut">Christophe Bec</dc:creator>
+        <dc:creator opf:file-as="Bec, Christophe &amp; Raffaele, Stefano" opf:role="aut">Stefano Raffaele</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (4.15.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2019-07-08T17:38:55+00:00</dc:date>
+        <dc:publisher>Soleil</dc:publisher>
+        <dc:language>en</dc:language>
+        <meta content="{&quot;Christophe Bec&quot;: &quot;&quot;, &quot;Stefano Raffaele&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="Prométhée" name="calibre:series"/>
+        <meta content="18" name="calibre:series_index"/>
+        <meta content="2020-04-22T11:51:16+00:00" name="calibre:timestamp"/>
+        <meta content="La Théorie du Grain de Sable" name="calibre:title_sort"/>
+        <meta name="calibre:user_metadata:#shelves" content="{&quot;is_csp&quot;: false, &quot;is_multiple&quot;: &quot;|&quot;, &quot;is_multiple2&quot;: {&quot;ui_to_list&quot;: &quot;,&quot;, &quot;cache_to_list&quot;: &quot;|&quot;, &quot;list_to_ui&quot;: &quot;, &quot;}, &quot;column&quot;: &quot;value&quot;, &quot;display&quot;: {&quot;description&quot;: &quot;&quot;, &quot;is_names&quot;: false}, &quot;datatype&quot;: &quot;text&quot;, &quot;category_sort&quot;: &quot;value&quot;, &quot;name&quot;: &quot;Shelves&quot;, &quot;is_custom&quot;: true, &quot;label&quot;: &quot;shelves&quot;, &quot;rec_index&quot;: 22, &quot;#extra#&quot;: null, &quot;search_terms&quot;: [&quot;#shelves&quot;], &quot;#value#&quot;: [], &quot;colnum&quot;: 1, &quot;table&quot;: &quot;custom_column_1&quot;, &quot;is_category&quot;: true, &quot;link_column&quot;: &quot;value&quot;, &quot;is_editable&quot;: true, &quot;kind&quot;: &quot;field&quot;}"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>
