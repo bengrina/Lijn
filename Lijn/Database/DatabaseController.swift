@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 class BandeDessinee: Object {
-    @objc dynamic var uuid = UUID().uuidString
+    @objc dynamic var uuid = ""
     @objc dynamic var title = ""
-    @objc dynamic var author = ""
+    let creators = List<Creator>()
     @objc dynamic var thumbnailPath = "blankThumbnail"
     @objc dynamic var filePath = ""
     @objc dynamic var percentageRead = 0
@@ -22,13 +22,17 @@ class BandeDessinee: Object {
     @objc dynamic var publishedDate = Date(timeIntervalSince1970: 1)
     @objc dynamic var addedDate = Date(timeIntervalSinceNow: 0)
 }
+class Creator: Object{
+    @objc dynamic var name = ""
+}
+
 
 struct DatabaseController {
-    
+
     func writeToDatabase(file: String,
-                         uuid: UUID,
+                         uuid: String,
                          title: String?,
-                         author: String?,
+                         creators: [String]?,
                          thumbnail: String?,
                          percentageRead: Int?,
                          editor: String?,
@@ -36,17 +40,25 @@ struct DatabaseController {
                          serieNumber: Int?,
                          publishedDate: Date?
     ) {
-        
+
         let bd = BandeDessinee()
         
+
         bd.filePath = file
-        bd.uuid = uuid.uuidString
-        
+        bd.uuid = uuid
+
         if let tit = title {
         bd.title = tit
         }
-        if let auth = author {
-            bd.author = auth
+        // Bug à corriger: 2x le même creator dans BandeDessinée, et un seul creator dans creator.
+        if let safeCreators = creators {
+            for authors in safeCreators {
+                print(authors)
+                let creator = Creator()// S'exécute deux fois
+                creator.name = authors
+                bd.creators.append(creator)
+                }
+
         }
         if let thumb = thumbnail {
             bd.thumbnailPath = thumb
@@ -66,35 +78,44 @@ struct DatabaseController {
         if let published = publishedDate {
             bd.publishedDate = published
         }
-        
+
         let realm = try! Realm()
-  
+
         try! realm.write {
             realm.add(bd)
         }
-        
+
         let contents = realm.objects(BandeDessinee.self)
         print(contents)
 
     }
     func resetDatabase() {
+        let realm = try! Realm()
         try! realm.write {
             realm.deleteAll()
         }
-        
+
         let contents = realm.objects(BandeDessinee.self)
         print(contents)
+    }
+    func deleteDatabase() {
+        try! FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
     }
     func updateDatabase() {
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileManager = FileManager.default
-        
+
         do {
             let fileURLs = try fileManager.contentsOfDirectory(at: documentsFolder, includingPropertiesForKeys: nil)
-            writeToDatabase(file: fileURLs[0].absoluteString, uuid: UUID(), title: nil, author: nil, thumbnail: nil, percentageRead: nil, editor: nil, serie: nil, serieNumber: nil, publishedDate: nil)
+            writeToDatabase(file: fileURLs[0].absoluteString, uuid: "testuuid", title: nil, creators: nil, thumbnail: nil, percentageRead: nil, editor: nil, serie: nil, serieNumber: nil, publishedDate: nil)
         } catch {
             print("Error while enumerating files \(documentsFolder.path): \(error.localizedDescription)")
         }
+    }
+    func printDatabaseContents() {
+        let realm = try! Realm()
+        print(realm.objects(BandeDessinee.self))
+        print(realm.objects(Creator.self))
     }
 }
 

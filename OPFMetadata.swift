@@ -110,6 +110,18 @@ func metadataDisplay() {
     } else {print("fichier non trouvé")}
     } catch {print(error)}
 }
+    
+    func addMetadataToDatabase() {
+         if let xmlUrl = Bundle.main.url(forResource: "metadata", withExtension: "opf") {
+            let opfParser = OPFParser(withURL: xmlUrl)
+            let databaseController = DatabaseController()
+            let bandeDessinee = opfParser.parse()
+            bandeDessinee[0].creators = bandeDessinee[0].creators.filter({ $0 != ""})
+            print("Adding\n\(bandeDessinee)\n to database ")
+            databaseController.writeToDatabase(file: "metadata.opf", uuid: bandeDessinee[0].uuid, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: "cover.jpg", percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
+            }
+        }
 }
+
 
 

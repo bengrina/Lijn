@@ -7,11 +7,7 @@
 //
 
 import SwiftUI
-import RealmSwift
 
-let realm = try! Realm()
-
-var aama = BandeDessinee()
 
 struct ContentView: View {
     @State private var selection = 0

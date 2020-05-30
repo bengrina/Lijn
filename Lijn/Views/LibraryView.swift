@@ -7,8 +7,8 @@
 //
 
 import SwiftUI
+import RealmSwift
 
-let databaseController = DatabaseController()
 let metadataController = TestMetadata()
 struct LibraryView: View {
     
@@ -16,8 +16,7 @@ struct LibraryView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 44)!]
         UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 20)!]
         UITableView.appearance().separatorColor = .clear
-        
-       }
+    }
     
     var body: some View {
         NavigationView {

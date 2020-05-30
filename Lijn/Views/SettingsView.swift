@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+let databaseController = DatabaseController()
 
 struct SettingsView: View {
     @State var title: String = ""
@@ -21,6 +21,15 @@ struct SettingsView: View {
             }
             Button(action: {metadataController.metadataDisplay()}) {
                         Text("Test parsing")
+            }
+            Button(action: {metadataController.addMetadataToDatabase()}) {
+                        Text("Add metadata.opf to database")
+            }
+            Button(action: {databaseController.resetDatabase()}) {
+                        Text("Delete database")
+            }
+            Button(action: {databaseController.printDatabaseContents()}) {
+                        Text("Print database contents")
             }
 
         }
