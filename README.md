@@ -9,7 +9,7 @@ Far from release
 
 Simply put, Lijn is a fancy database for comics in the PDF or CBR/CBZ format. I read lots of Bandes Dessinées on my iPad, and I wanted an app that presents my collection in a beautiful and fast way.
 
-It's my first project, and I will write about it on my [blog](bengrina.github.io).
+It's my first project, and I will write about it on my [blog](https://bengrina.github.io).
 
 ### Objectives
 
