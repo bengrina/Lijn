@@ -1,0 +1,6 @@
+framework module Pods_LijnTests {
+  umbrella header "Pods-LijnTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

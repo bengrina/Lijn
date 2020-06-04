@@ -5,8 +5,15 @@
 
 Simply put, Lijn is a fancy database for comics in the PDF or CBR/CBZ format. I read lots of Bandes Dessinées on my iPad, and I wanted an app that presents my collection in a beautiful and fast way.
 
-It's my first project, and I will blog about it on my [blog](aymanebengrina.github.io).
+It's my first project, and I will post about it on my [blog](aymanebengrina.github.io).
+
+### Objectives
+
+I plan to release a fast and easy to use app. To do that, i'm using Realm as a database, and plan to use MuPdf as the viewer.
 
 ## Screenshots
 
-*Coming soon*
+Expectation             |  Reality (As of 04/06/20)
+:-------------------------:|:-------------------------:
+![Expectation](Screenshots/expectation.jpg)  |  ![Reality](Screenshots/reality.jpeg)
+Initial mockup | SwiftUI List linked with Realm Database
