@@ -111,8 +111,8 @@ func metadataDisplay() {
     } catch {print(error)}
 }
     
-    func addMetadataToDatabase() {
-         if let xmlUrl = Bundle.main.url(forResource: "metadata", withExtension: "opf") {
+    func addMetadataToDatabase(ressource: String) {
+         if let xmlUrl = Bundle.main.url(forResource: ressource, withExtension: "opf") {
             let opfParser = OPFParser(withURL: xmlUrl)
             let databaseController = DatabaseController()
             let bandeDessinee = opfParser.parse()

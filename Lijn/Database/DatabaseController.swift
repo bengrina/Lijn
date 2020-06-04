@@ -9,7 +9,8 @@
 import Foundation
 import RealmSwift
 
-class BandeDessinee: Object {
+class BandeDessinee: Object, Identifiable {
+    
     @objc dynamic var uuid = ""
     @objc dynamic var title = ""
     let creators = List<Creator>()
@@ -21,6 +22,8 @@ class BandeDessinee: Object {
     @objc dynamic var serieNumber = 0
     @objc dynamic var publishedDate = Date(timeIntervalSince1970: 1)
     @objc dynamic var addedDate = Date(timeIntervalSinceNow: 0)
+    
+    var id = UUID()
 }
 class Creator: Object{
     @objc dynamic var name = ""
@@ -50,11 +53,9 @@ struct DatabaseController {
         if let tit = title {
         bd.title = tit
         }
-        // Bug à corriger: 2x le même creator dans BandeDessinée, et un seul creator dans creator.
         if let safeCreators = creators {
             for authors in safeCreators {
-                print(authors)
-                let creator = Creator()// S'exécute deux fois
+                let creator = Creator()
                 creator.name = authors
                 bd.creators.append(creator)
                 }
