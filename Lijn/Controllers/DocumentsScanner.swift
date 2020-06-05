@@ -21,5 +21,12 @@ struct DocumentsScanner {
         let files = try! FileManager.default.urls(for: .documentDirectory, skipsHiddenFiles: true)
         let pdfFiles = files!.filter{ $0.pathExtension == "pdf" }
         print(pdfFiles)
+        for pdfFile in pdfFiles {
+            databaseController.writeToDatabase(file: String(pdfFile.absoluteString), uuid: "", title: String(pdfFile.lastPathComponent), creators: [""], thumbnail: "", percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
+        }
+    }
+    
+    func fileIsInDatabase (filePath: String) -> Bool {
+            return realm.object(ofType: BandeDessinee.self, forPrimaryKey: filePath) != nil
     }
 }

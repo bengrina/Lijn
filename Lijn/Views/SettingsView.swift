@@ -37,6 +37,9 @@ struct SettingsView: View {
             Button(action: {databaseController.printDatabaseContents()}) {
                         Text("Print database contents")
             }
+            Button(action: {documentsScanner.printDocumentsDirectoryContents()}) {
+                        Text("Scan for pdf files and add to database")
+            }
 
         }
             }

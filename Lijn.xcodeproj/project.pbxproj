@@ -26,6 +26,7 @@
 		EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */; };
 		EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB52946D247D80F200FE4034 /* SettingsView.swift */; };
 		EB55A3612477111C0067FD53 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB55A3602477111C0067FD53 /* ImportView.swift */; };
+		EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */; };
 		EBBAA467247DC03D0083A607 /* NewYorkExtraLarge-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAA465247DBFFC0083A607 /* NewYorkExtraLarge-Medium.otf */; };
 		EBBAA468247DC0400083A607 /* NewYorkExtraLarge-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAA464247DBFFA0083A607 /* NewYorkExtraLarge-Bold.otf */; };
 		EBC8E2142476CB2E00C7B620 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */; };
@@ -80,6 +81,7 @@
 		EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsScanner.swift; sourceTree = "<group>"; };
 		EB52946D247D80F200FE4034 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EB55A3602477111C0067FD53 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
+		EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFMetadata.swift; sourceTree = "<group>"; };
 		EBBAA464247DBFFA0083A607 /* NewYorkExtraLarge-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Bold.otf"; sourceTree = "<group>"; };
 		EBBAA465247DBFFC0083A607 /* NewYorkExtraLarge-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Medium.otf"; sourceTree = "<group>"; };
 		EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		EB8F3CC5248AC68D00297DA9 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				EB15BCF02482F3650001FA69 /* OPF Parsing */,
+				EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
 		EBBAA466247DC00A0083A607 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,8 +257,8 @@
 		EBC8E2102476C3FA00C7B620 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				EB15BCF02482F3650001FA69 /* OPF Parsing */,
 				EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */,
+				EB8F3CC5248AC68D00297DA9 /* Metadata */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -502,6 +513,7 @@
 				EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */,
 				EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */,
 				EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */,
+				EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */,
 				EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */,
 				EB120EC62475A1D90059898C /* ContentView.swift in Sources */,
 				EB120EF42475A28A0059898C /* BookView.swift in Sources */,
