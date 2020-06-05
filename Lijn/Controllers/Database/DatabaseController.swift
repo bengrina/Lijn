@@ -23,7 +23,10 @@ class BandeDessinee: Object, Identifiable {
     @objc dynamic var publishedDate = Date(timeIntervalSince1970: 1)
     @objc dynamic var addedDate = Date(timeIntervalSinceNow: 0)
     
-    var id = UUID()
+    override static func primaryKey() -> String? {
+        return "filePath"
+    }
+
 }
 class Creator: Object{
     @objc dynamic var name = ""
