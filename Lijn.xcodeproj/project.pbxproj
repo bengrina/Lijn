@@ -23,6 +23,7 @@
 		EB120EF22475A25E0059898C /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EF12475A25E0059898C /* LibraryView.swift */; };
 		EB120EF42475A28A0059898C /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EF32475A28A0059898C /* BookView.swift */; };
 		EB15BCEF2482F2B20001FA69 /* metadata1.opf in Resources */ = {isa = PBXBuildFile; fileRef = EB15BCEE2482F2B20001FA69 /* metadata1.opf */; };
+		EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */; };
 		EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB52946D247D80F200FE4034 /* SettingsView.swift */; };
 		EB55A3612477111C0067FD53 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB55A3602477111C0067FD53 /* ImportView.swift */; };
 		EBBAA467247DC03D0083A607 /* NewYorkExtraLarge-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAA465247DBFFC0083A607 /* NewYorkExtraLarge-Medium.otf */; };
@@ -76,6 +77,7 @@
 		EB120EF12475A25E0059898C /* LibraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		EB120EF32475A28A0059898C /* BookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		EB15BCEE2482F2B20001FA69 /* metadata1.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = metadata1.opf; path = "../../Calibre Library/BD/Roger Leloup/La spirale du temps (78)/metadata1.opf"; sourceTree = "<group>"; };
+		EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsScanner.swift; sourceTree = "<group>"; };
 		EB52946D247D80F200FE4034 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EB55A3602477111C0067FD53 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
 		EBBAA464247DBFFA0083A607 /* NewYorkExtraLarge-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Bold.otf"; sourceTree = "<group>"; };
@@ -166,7 +168,7 @@
 				EB120EC12475A1D90059898C /* AppDelegate.swift */,
 				EBBAA466247DC00A0083A607 /* Fonts */,
 				EB120EC32475A1D90059898C /* SceneDelegate.swift */,
-				EBC8E2102476C3FA00C7B620 /* Database */,
+				EB28D2A2248A3A0F00012380 /* Controllers */,
 				EBC8E20E2476C3E600C7B620 /* Views */,
 				EB120EC72475A1DF0059898C /* Assets.xcassets */,
 				EB120ECC2475A1DF0059898C /* LaunchScreen.storyboard */,
@@ -210,6 +212,16 @@
 			path = "OPF Parsing";
 			sourceTree = "<group>";
 		};
+		EB28D2A2248A3A0F00012380 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EBE4673A2484250000172FBC /* LibraryController.swift */,
+				EBC8E2102476C3FA00C7B620 /* Database */,
+				EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		EBBAA466247DC00A0083A607 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +239,6 @@
 				EB52946D247D80F200FE4034 /* SettingsView.swift */,
 				EB120EF32475A28A0059898C /* BookView.swift */,
 				EB120EC52475A1D90059898C /* ContentView.swift */,
-				EBE4673A2484250000172FBC /* LibraryController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -491,6 +502,7 @@
 				EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */,
 				EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */,
 				EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */,
+				EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */,
 				EB120EC62475A1D90059898C /* ContentView.swift in Sources */,
 				EB120EF42475A28A0059898C /* BookView.swift in Sources */,
 				EBC8E2142476CB2E00C7B620 /* DatabaseController.swift in Sources */,

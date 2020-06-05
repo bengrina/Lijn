@@ -97,7 +97,7 @@ extension OPFParser: XMLParserDelegate {
     }
 }
 
-class TestMetadata {
+class MetadataController {
 func metadataDisplay() {
     do {
      if let xmlUrl = Bundle.main.url(forResource: "metadata", withExtension: "opf") {

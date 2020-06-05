@@ -10,8 +10,8 @@ import SwiftUI
 import RealmSwift
 
 let realm = try! Realm()
+let documentsScanner = DocumentsScanner()
 
-let metadataController = TestMetadata()
 class BindableResults<Element>: ObservableObject where Element: RealmSwift.RealmCollectionValue {
 
     var results: Results<Element>
@@ -43,6 +43,7 @@ struct LibraryView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 44)!]
         UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 20)!]
         UITableView.appearance().separatorColor = .clear
+        documentsScanner.printDocumentsDirectoryContents()
     }
     
     var body: some View {

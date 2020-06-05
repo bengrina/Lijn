@@ -8,6 +8,8 @@
 
 import SwiftUI
 let databaseController = DatabaseController()
+let metadataController = MetadataController()
+
 
 
 struct SettingsView: View {

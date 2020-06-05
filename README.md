@@ -1,7 +1,7 @@
 # Lijn
 "Bande Dessinée" reader app for iPad, developed using Swift and SwiftUI
 
-## State
+## Current state
 
 Far from release
 
@@ -11,7 +11,7 @@ Simply put, Lijn is a fancy database for comics in the PDF or CBR/CBZ format. I 
 
 It's my first project, and I will write about it on my [blog](https://bengrina.github.io).
 
-### Objectives
+### Goals
 
 I plan to release a fast and easy to use app. To do that, i'm using Realm as a database, and plan to use MuPdf as the viewer.
 
