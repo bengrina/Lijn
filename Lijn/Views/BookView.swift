@@ -13,7 +13,9 @@ struct BookView: View {
     var thumbnail: String
     var title: String
     
+    
     var body: some View {
+        
         VStack(alignment: .leading) {
             Image(thumbnail)
                 .resizable()

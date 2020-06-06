@@ -121,6 +121,14 @@ func metadataDisplay() {
             databaseController.writeToDatabase(file: ressource, uuid: bandeDessinee[0].uuid, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: "cover.jpg", percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
             }
         }
+    func addMetadataToDatabase(url: URL, fileUrl: String, thumbnailUrl: String) {
+        let opfParser = OPFParser(withURL: url)
+        let databaseController = DatabaseController()
+        let bandeDessinee = opfParser.parse()
+        bandeDessinee[0].creators = bandeDessinee[0].creators.filter({ $0 != ""})
+        print("Adding\n\(bandeDessinee)\n to database ")
+        databaseController.writeToDatabase(file: fileUrl, uuid: bandeDessinee[0].uuid, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: thumbnailUrl, percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
+    }
 }
 
 

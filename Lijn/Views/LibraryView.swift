@@ -48,7 +48,7 @@ struct LibraryView: View {
     var body: some View {
         NavigationView {
             List(bds.results.sorted(byKeyPath: "title", ascending: true)) { bd in
-                BookView(thumbnail: "blankThumbnail", title: bd.title)
+                BookView(thumbnail: bd.thumbnailPath, title: bd.title)
             }
             .navigationBarTitle("Library")
             .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
