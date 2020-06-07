@@ -47,19 +47,23 @@ struct DocumentsScanner {
         let subDirs = documentsDirectoryURL.subDirectories
         
         for subDir in subDirs {
+            
+            // Prendre le nom du dossier y ajouter les documents PUIS enregistrer cette URL
+            let dirName = subDir.lastPathComponent
             let fileUrls = try! fileManager.contentsOfDirectory(at: subDir, includingPropertiesForKeys: nil)
             let bdFiles = fileUrls.filter { $0.pathExtension == "pdf" || $0.pathExtension == "cbz"}
             
             for bdFile in bdFiles {
-                if fileIsInDatabase(filePath: bdFile.absoluteString) {
-                let pathComponent = subDir.appendingPathComponent("metadata.opf")
-                let metadataPath = pathComponent.path
-                let coverComponent = subDir.appendingPathComponent("cover.jpg")
-                let coverPath = coverComponent.path
+                let bdFileName = bdFile.lastPathComponent
+                if fileIsInDatabase(filePath: bdFileName) {
+                    let metadataToParse = subDir.appendingPathComponent("metadata.opf")
+                    let coverPath = dirName + "/cover.jpg"
+                    let filePath = dirName + "/" + bdFile.lastPathComponent
+                    print("Cover path: \(coverPath) \n File path: \(filePath)")
                     
-                if fileManager.fileExists(atPath: metadataPath) {
-                    print("Success for \(bdFile)")
-                    metadataController.addMetadataToDatabase(url: pathComponent, fileUrl: bdFile.absoluteString, thumbnailUrl: coverPath)
+                    if fileManager.fileExists(atPath: metadataToParse.path) {
+                        print("Success for \(bdFile)")
+                        metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: filePath, thumbnailUrl: coverPath)
                     } else {print("No metadata file found at \(subDir.appendingPathComponent("metadata.opf"))")}
                 }
             }

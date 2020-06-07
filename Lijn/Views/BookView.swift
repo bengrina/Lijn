@@ -15,7 +15,8 @@ struct BookView: View {
     
     func thumbnail(_ thumbnail: String?) -> UIImage{
         if let cover = thumbnail {
-            let coverURL = URL(fileURLWithPath: cover)
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let coverURL = documentsDirectory.appendingPathComponent(cover)
             do {
                 let imageData = try Data(contentsOf: coverURL)
                 return UIImage(data: imageData) ?? UIImage(imageLiteralResourceName: "blankThumbnail")
