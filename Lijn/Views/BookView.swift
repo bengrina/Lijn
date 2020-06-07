@@ -10,14 +10,29 @@ import SwiftUI
 
 struct BookView: View {
     
-    var thumbnail: String
+    var thumbnail: String?
     var title: String
+    
+    func thumbnail(_ thumbnail: String?) -> UIImage{
+        if let cover = thumbnail {
+            let coverURL = URL(fileURLWithPath: cover)
+            do {
+                let imageData = try Data(contentsOf: coverURL)
+                return UIImage(data: imageData) ?? UIImage(imageLiteralResourceName: "blankThumbnail")
+            } catch {
+                print("Error loading image : \(error)")
+                return UIImage(imageLiteralResourceName: "blankThumbnail")
+            }
+        } else {
+            return UIImage(imageLiteralResourceName: "blankThumbnail")
+        }
+    }
     
     
     var body: some View {
         
         VStack(alignment: .leading) {
-            Image(thumbnail)
+            Image(uiImage: thumbnail(thumbnail))
                 .resizable()
                 .frame(width: 192, height: 256)
             .shadow(radius: 4, x: 5, y: -5)
