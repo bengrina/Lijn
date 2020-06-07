@@ -56,19 +56,24 @@ struct DocumentsScanner {
             for bdFile in bdFiles {
                 let bdFileName = bdFile.lastPathComponent
                 if fileIsInDatabase(filePath: bdFileName) {
-                    let metadataToParse = subDir.appendingPathComponent("metadata.opf")
-                    let coverPath = dirName + "/cover.jpg"
+                    let metadataToParse = subDir.appendingPathComponent(K.metadataFromCalibre)
+                    let coverPath = dirName + K.coverFromCalibre
                     let filePath = dirName + "/" + bdFile.lastPathComponent
                     print("Cover path: \(coverPath) \n File path: \(filePath)")
                     
                     if fileManager.fileExists(atPath: metadataToParse.path) {
                         print("Success for \(bdFile)")
                         metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: filePath, thumbnailUrl: coverPath)
-                    } else {print("No metadata file found at \(subDir.appendingPathComponent("metadata.opf"))")}
+                    } else {print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")}
                 }
             }
         }
         
         
+    }
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
 }
