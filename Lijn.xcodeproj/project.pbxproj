@@ -11,7 +11,6 @@
 		2E8F6DAFFA2E7865C2835E7D /* Pods_Lijn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE670E9979088F478A4C73 /* Pods_Lijn.framework */; };
 		4C0398024EEAA2246032A195 /* Pods_Lijn_LijnUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8FBC4D03C709D8761AA245 /* Pods_Lijn_LijnUITests.framework */; };
 		EB0C6F6024818C2600C43AE0 /* OPFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */; };
-		EB0C6F622481913600C43AE0 /* metadata.opf in Resources */ = {isa = PBXBuildFile; fileRef = EB0C6F612481913600C43AE0 /* metadata.opf */; };
 		EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC12475A1D90059898C /* AppDelegate.swift */; };
 		EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC32475A1D90059898C /* SceneDelegate.swift */; };
 		EB120EC62475A1D90059898C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC52475A1D90059898C /* ContentView.swift */; };
@@ -22,8 +21,8 @@
 		EB120EE42475A1E00059898C /* LijnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EE32475A1E00059898C /* LijnUITests.swift */; };
 		EB120EF22475A25E0059898C /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EF12475A25E0059898C /* LibraryView.swift */; };
 		EB120EF42475A28A0059898C /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EF32475A28A0059898C /* BookView.swift */; };
-		EB15BCEF2482F2B20001FA69 /* metadata1.opf in Resources */ = {isa = PBXBuildFile; fileRef = EB15BCEE2482F2B20001FA69 /* metadata1.opf */; };
 		EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */; };
+		EB31B5DB248D89710068055F /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31B5DA248D89710068055F /* K.swift */; };
 		EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB52946D247D80F200FE4034 /* SettingsView.swift */; };
 		EB55A3612477111C0067FD53 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB55A3602477111C0067FD53 /* ImportView.swift */; };
 		EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */; };
@@ -60,7 +59,6 @@
 		72C10C67E116CCCA2F4960C0 /* Pods-Lijn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lijn.debug.xcconfig"; path = "Target Support Files/Pods-Lijn/Pods-Lijn.debug.xcconfig"; sourceTree = "<group>"; };
 		C7CA6F7E9A98E7A7875B1399 /* Pods-LijnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LijnTests.debug.xcconfig"; path = "Target Support Files/Pods-LijnTests/Pods-LijnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPFMetadata.swift; sourceTree = "<group>"; };
-		EB0C6F612481913600C43AE0 /* metadata.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.opf; sourceTree = "<group>"; };
 		EB120EBE2475A1D90059898C /* Lijn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lijn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB120EC12475A1D90059898C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB120EC32475A1D90059898C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,8 +75,8 @@
 		EB120EE52475A1E00059898C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB120EF12475A25E0059898C /* LibraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		EB120EF32475A28A0059898C /* BookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
-		EB15BCEE2482F2B20001FA69 /* metadata1.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = metadata1.opf; path = "../../Calibre Library/BD/Roger Leloup/La spirale du temps (78)/metadata1.opf"; sourceTree = "<group>"; };
 		EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsScanner.swift; sourceTree = "<group>"; };
+		EB31B5DA248D89710068055F /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		EB52946D247D80F200FE4034 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EB55A3602477111C0067FD53 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
 		EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFMetadata.swift; sourceTree = "<group>"; };
@@ -143,8 +141,6 @@
 		EB120EB52475A1D90059898C = {
 			isa = PBXGroup;
 			children = (
-				EB0C6F612481913600C43AE0 /* metadata.opf */,
-				EB15BCEE2482F2B20001FA69 /* metadata1.opf */,
 				EB120EC02475A1D90059898C /* Lijn */,
 				EB120ED72475A1E00059898C /* LijnTests */,
 				EB120EE22475A1E00059898C /* LijnUITests */,
@@ -168,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				EB120EC12475A1D90059898C /* AppDelegate.swift */,
+				EB31B5DA248D89710068055F /* K.swift */,
 				EBBAA466247DC00A0083A607 /* Fonts */,
 				EB120EC32475A1D90059898C /* SceneDelegate.swift */,
 				EB28D2A2248A3A0F00012380 /* Controllers */,
@@ -224,6 +221,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		EB31B5D9248D7E430068055F /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				EB120EF12475A25E0059898C /* LibraryView.swift */,
+				EB120EF32475A28A0059898C /* BookView.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		EB8F3CC5248AC68D00297DA9 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,10 +251,9 @@
 		EBC8E20E2476C3E600C7B620 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EB120EF12475A25E0059898C /* LibraryView.swift */,
+				EB31B5D9248D7E430068055F /* Library */,
 				EB55A3602477111C0067FD53 /* ImportView.swift */,
 				EB52946D247D80F200FE4034 /* SettingsView.swift */,
-				EB120EF32475A28A0059898C /* BookView.swift */,
 				EB120EC52475A1D90059898C /* ContentView.swift */,
 			);
 			path = Views;
@@ -372,11 +377,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB0C6F622481913600C43AE0 /* metadata.opf in Resources */,
 				EBBAA468247DC0400083A607 /* NewYorkExtraLarge-Bold.otf in Resources */,
 				EB120ECE2475A1DF0059898C /* LaunchScreen.storyboard in Resources */,
 				EB120ECB2475A1DF0059898C /* Preview Assets.xcassets in Resources */,
-				EB15BCEF2482F2B20001FA69 /* metadata1.opf in Resources */,
 				EB120EC82475A1DF0059898C /* Assets.xcassets in Resources */,
 				EBBAA467247DC03D0083A607 /* NewYorkExtraLarge-Medium.otf in Resources */,
 			);
@@ -511,6 +514,7 @@
 				EB120EF22475A25E0059898C /* LibraryView.swift in Sources */,
 				EB55A3612477111C0067FD53 /* ImportView.swift in Sources */,
 				EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */,
+				EB31B5DB248D89710068055F /* K.swift in Sources */,
 				EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */,
 				EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */,
 				EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */,
