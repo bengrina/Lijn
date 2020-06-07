@@ -17,7 +17,7 @@ I plan to release a fast and easy to use app. To do that, i'm using Realm as a d
 
 ## Screenshots
 
-Expectation             |  Reality (As of 04/06/20)
+Expectation             |  Reality (As of 07/06/20)
 :-------------------------:|:-------------------------:
 ![Expectation](Screenshots/expectation.jpg)  |  ![Reality](Screenshots/reality.jpeg)
-Initial mockup | SwiftUI List linked with Realm Database
+Initial mockup | SwiftUI List linked with Realm Database (Fixed cover issue)
