@@ -1,9 +1,11 @@
+![](icon.png)
+
 # Lijn
 "Bande Dessinée" reader app for iPad, developed using Swift and SwiftUI
 
 ## Current state
 
-Far from release
+I'm still working on the database and on metadata handling, After that i'll have to resolve threading issues and retain cycles.
 
 ## About
 
