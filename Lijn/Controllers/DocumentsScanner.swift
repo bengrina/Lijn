@@ -7,6 +7,7 @@
 //
 
 import Foundation
+let pdfMetadata = PDFMetadata()
 
 extension FileManager {
     func urls(for directory: FileManager.SearchPathDirectory, skipsHiddenFiles: Bool = true ) -> [URL]? {
@@ -32,8 +33,37 @@ struct DocumentsScanner {
         let pdfFiles = files!.filter{ $0.pathExtension == "pdf" }
         print(pdfFiles)
         for pdfFile in pdfFiles {
-            if fileIsInDatabase(filePath: pdfFile.absoluteString) {
-            databaseController.writeToDatabase(file: String(pdfFile.absoluteString), uuid: "", title: String(pdfFile.lastPathComponent), creators: [""], thumbnail: "", percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
+            // filePath property: Create a folder, put PDF in it, put that to the database (Don't create before the if)
+            let pdfPath = pdfFile.path
+            print("-----PDFFILE AND PDFPATH---")
+            print(pdfFile)
+            print(pdfPath)
+            
+            let pdfFolder = pdfFile.deletingPathExtension()
+            let potentialPath = pdfFolder.lastPathComponent + "/" + pdfFile.lastPathComponent
+            print("POTENTIAL PATH \(potentialPath)")
+            if fileIsInDatabase(filePath: potentialPath) {
+                // Create directory https://stackoverflow.com/a/26931481/13642472
+                // And move the pdf file there
+
+                let directoryPath = getDocumentsDirectory().appendingPathComponent(pdfFolder.lastPathComponent)
+                print("DIRECTORY PATH: \(directoryPath)")
+                if !FileManager.default.fileExists(atPath: directoryPath.absoluteString) {
+                    do {
+                        try FileManager.default.createDirectory(at: directoryPath, withIntermediateDirectories: true, attributes: nil)
+                        try FileManager.default.moveItem(at: pdfFile, to: directoryPath.appendingPathComponent(pdfFile.lastPathComponent))
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                if let thumbnail = pdfMetadata.generateThumbnail(url: pdfFile) {
+                    if let data = thumbnail.jpegData(compressionQuality: 0.8) {
+                        let filename = directoryPath.appendingPathComponent(K.coverFromCalibre)
+                        try? data.write(to: filename)
+                    }
+                }
+                
+                databaseController.writeToDatabase(file: String(pdfFile.absoluteString), uuid: "", title: String(pdfFile.lastPathComponent), creators: [""], thumbnail: "", percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
             }
         }
     }
