@@ -49,6 +49,8 @@ struct DocumentsScanner {
 
                 let directoryPath = getDocumentsDirectory().appendingPathComponent(pdfFolder.lastPathComponent)
                 print("DIRECTORY PATH: \(directoryPath)")
+                let folderPath = directoryPath.appendingPathComponent(pdfFile.lastPathComponent)
+                print("FOLDER PATH: \(folderPath)")
                 if !FileManager.default.fileExists(atPath: directoryPath.absoluteString) {
                     do {
                         try FileManager.default.createDirectory(at: directoryPath, withIntermediateDirectories: true, attributes: nil)
@@ -57,14 +59,15 @@ struct DocumentsScanner {
                         print(error.localizedDescription)
                     }
                 }
-                if let thumbnail = pdfMetadata.generateThumbnail(url: pdfFile) {
+                if let thumbnail = pdfMetadata.generateThumbnail(url: folderPath) {
                     if let data = thumbnail.jpegData(compressionQuality: 0.8) {
                         let filename = directoryPath.appendingPathComponent(K.coverFromCalibre)
                         try? data.write(to: filename)
                     }
                 }
+                let thumbnailPath = pdfFolder.lastPathComponent + "/" + K.coverFromCalibre
                 
-                databaseController.writeToDatabase(file: String(pdfFile.absoluteString), uuid: "", title: String(pdfFile.lastPathComponent), creators: [""], thumbnail: "", percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
+                databaseController.writeToDatabase(file: potentialPath, uuid: "", title: String(pdfFile.lastPathComponent), creators: [""], thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
             }
         }
     }
