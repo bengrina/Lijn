@@ -38,10 +38,10 @@ struct SettingsView: View {
                         Text("Print database contents")
             }
             Button(action: {documentsScanner.printDocumentsDirectoryContents()}) {
-                        Text("Scan for pdf files and add to database")
+                        Text("printDocumentsDirectoryContents")
             }
             Button(action: {documentsScanner.printSubdirectories()}) {
-                        Text("Print Subdirectories")
+                        Text("printSubdirectories")
             }
 
         }

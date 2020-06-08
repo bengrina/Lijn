@@ -29,6 +29,7 @@ extension URL {
 
 struct DocumentsScanner {
     func printDocumentsDirectoryContents() {
+        // At this point in time: Putting in a folder works, but no cover is generated
         let files = try! FileManager.default.urls(for: .documentDirectory, skipsHiddenFiles: true)
         let pdfFiles = files!.filter{ $0.pathExtension == "pdf" }
         print(pdfFiles)
@@ -85,16 +86,19 @@ struct DocumentsScanner {
             
             for bdFile in bdFiles {
                 let bdFileName = bdFile.lastPathComponent
-                if fileIsInDatabase(filePath: bdFileName) {
+                let path = dirName + "/" + bdFileName
+                if fileIsInDatabase(filePath: path) {
                     let metadataToParse = subDir.appendingPathComponent(K.metadataFromCalibre)
-                    let coverPath = dirName + K.coverFromCalibre
-                    let filePath = dirName + "/" + bdFile.lastPathComponent
-                    print("Cover path: \(coverPath) \n File path: \(filePath)")
-                    
+                    let coverPath = dirName + "/" + K.coverFromCalibre
                     if fileManager.fileExists(atPath: metadataToParse.path) {
+                        // If a metadata.opf file is present in the folder
                         print("Success for \(bdFile)")
-                        metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: filePath, thumbnailUrl: coverPath)
-                    } else {print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")}
+                        metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: path, thumbnailUrl: coverPath)
+                    } else {
+                        // If there's no metadata.opf
+                        print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")
+                        databaseController.writeToDatabase(file: path, uuid: "", title: bdFileName, creators: [""], thumbnail: "", percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
+                    }
                 }
             }
         }
