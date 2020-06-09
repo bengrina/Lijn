@@ -26,7 +26,7 @@ class BandeDessinee: Object, Identifiable {
     override static func primaryKey() -> String? {
         return "uuid"
     }
-
+    
 }
 class Creator: Object{
     @objc dynamic var name = ""
@@ -34,7 +34,7 @@ class Creator: Object{
 
 
 struct DatabaseController {
-
+    
     func writeToDatabase(file: String,
                          title: String?,
                          creators: [String]?,
@@ -45,23 +45,23 @@ struct DatabaseController {
                          serieNumber: Int?,
                          publishedDate: Date?
     ) {
-
+        
         let bd = BandeDessinee()
         
-
+        
         bd.filePath = file
         bd.uuid = UUID().uuidString
-
+        
         if let tit = title {
-        bd.title = tit
+            bd.title = tit
         }
         if let safeCreators = creators {
             for authors in safeCreators {
                 let creator = Creator()
                 creator.name = authors
                 bd.creators.append(creator)
-                }
-
+            }
+            
         }
         if let thumb = thumbnail {
             bd.thumbnailPath = thumb
@@ -81,23 +81,23 @@ struct DatabaseController {
         if let published = publishedDate {
             bd.publishedDate = published
         }
-
+        
         let realm = try! Realm()
-
+        
         try! realm.write {
             realm.add(bd)
         }
-
+        
         let contents = realm.objects(BandeDessinee.self)
         print(contents)
-
+        
     }
     func resetDatabase() {
         let realm = try! Realm()
         try! realm.write {
             realm.deleteAll()
         }
-
+        
         let contents = realm.objects(BandeDessinee.self)
         print(contents)
     }
@@ -107,7 +107,7 @@ struct DatabaseController {
     func updateDatabase() {
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileManager = FileManager.default
-
+        
         do {
             let fileURLs = try fileManager.contentsOfDirectory(at: documentsFolder, includingPropertiesForKeys: nil)
             writeToDatabase(file: fileURLs[0].absoluteString, title: nil, creators: nil, thumbnail: nil, percentageRead: nil, editor: nil, serie: nil, serieNumber: nil, publishedDate: nil)

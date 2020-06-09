@@ -286,6 +286,8 @@
 			dependencies = (
 			);
 			name = Lijn;
+			packageProductDependencies = (
+			);
 			productName = Lijn;
 			productReference = EB120EBE2475A1D90059898C /* Lijn.app */;
 			productType = "com.apple.product-type.application";
@@ -361,6 +363,8 @@
 				Base,
 			);
 			mainGroup = EB120EB52475A1D90059898C;
+			packageReferences = (
+			);
 			productRefGroup = EB120EBF2475A1D90059898C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

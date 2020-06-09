@@ -26,12 +26,12 @@ struct PDFMetadata {
         
         return page.thumbnail(of: screenSize, for: .cropBox)
     }
-    func getMetadata(url: URL) -> [String]? {
-        //        guard let data = try? Data(contentsOf: url),
-        //            let document = PDFDocumentAttribute(rawValue: data) else {
-        //                return nil
-        //        }
-        let metadata = [""]
-        return metadata
-    }
+//    func getMetadata(url: URL) -> String? {
+//                guard let data = PDFDocument(url: url),
+//                    let metadata = data.documentAttributes else {
+//                        return nil
+//                }
+//        let title = metadata[PDFDocumentAttribute.authorAttribute]
+//        return String()
+//    }
 }
