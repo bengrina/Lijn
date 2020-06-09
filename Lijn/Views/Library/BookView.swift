@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct BookView: View {
+    @State var showingMetadataEditor = false
+    
     
     var thumbnail: String?
     var title: String
@@ -36,47 +38,50 @@ struct BookView: View {
             Image(uiImage: thumbnail(thumbnail))
                 .resizable()
                 .frame(width: 192, height: 256)
-            .shadow(radius: 4, x: 5, y: -5)
-            .contextMenu {
-                Button(action:{
-                  print("Button 1")
-                }){
-                  HStack {
-                      Image(systemName: "tag")
-                      Text("Edit metadata")
-                  }
-                }
-              Button(action:{
-                print("Button 1")
-              }){
-                HStack {
-                    Image(systemName: "trash")
-                    Text("Delete")
-                }
-                
-              }
-              Button(action:{
-                print("Button 2")
-              }){
-                HStack {
-                    Image(systemName: "square.and.arrow.up")
-                    Text("Share")
-                }
-              }
+                .shadow(radius: 4, x: 5, y: -5)
+                .contextMenu {
+                    Button(action:{
+                        self.showingMetadataEditor.toggle()
+                    }){
+                        HStack {
+                            Image(systemName: "tag")
+                            Text("Edit metadata")
+                        }
+                    }
+                    .sheet(isPresented: $showingMetadataEditor) {
+                        MetadataEditor()
+                    }
+                    Button(action:{
+                        print("Button 1")
+                    }){
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("Delete")
+                        }
+                        
+                    }
+                    Button(action:{
+                        print("Button 2")
+                    }){
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                            Text("Share")
+                        }
+                    }
             }
-                Text(title)
-                    .font(.system(size: 16, weight: .light, design: .default))
-                    .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
+            Text(title)
+                .font(.system(size: 16, weight: .light, design: .default))
+                .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
                 .padding(.top, -9.0)
+                .frame(width: 192, height: 18)
             
-            }
         }
     }
-
+}
 
 struct BookView_Previews: PreviewProvider {
     static var previews: some View {
-        BookView(thumbnail: "aama", title: "Aāma")
+        BookView(thumbnail: "blankThumbnail", title: "Sample Book BABABABABBABA")
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }

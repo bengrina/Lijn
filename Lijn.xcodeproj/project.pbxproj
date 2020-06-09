@@ -11,6 +11,7 @@
 		2E8F6DAFFA2E7865C2835E7D /* Pods_Lijn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE670E9979088F478A4C73 /* Pods_Lijn.framework */; };
 		4C0398024EEAA2246032A195 /* Pods_Lijn_LijnUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8FBC4D03C709D8761AA245 /* Pods_Lijn_LijnUITests.framework */; };
 		EB0C6F6024818C2600C43AE0 /* OPFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */; };
+		EB0FD7A42490243400E02966 /* MetadataEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FD7A32490243400E02966 /* MetadataEditor.swift */; };
 		EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC12475A1D90059898C /* AppDelegate.swift */; };
 		EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC32475A1D90059898C /* SceneDelegate.swift */; };
 		EB120EC62475A1D90059898C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC52475A1D90059898C /* ContentView.swift */; };
@@ -59,6 +60,7 @@
 		72C10C67E116CCCA2F4960C0 /* Pods-Lijn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lijn.debug.xcconfig"; path = "Target Support Files/Pods-Lijn/Pods-Lijn.debug.xcconfig"; sourceTree = "<group>"; };
 		C7CA6F7E9A98E7A7875B1399 /* Pods-LijnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LijnTests.debug.xcconfig"; path = "Target Support Files/Pods-LijnTests/Pods-LijnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPFMetadata.swift; sourceTree = "<group>"; };
+		EB0FD7A32490243400E02966 /* MetadataEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataEditor.swift; sourceTree = "<group>"; };
 		EB120EBE2475A1D90059898C /* Lijn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lijn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB120EC12475A1D90059898C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB120EC32475A1D90059898C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,14 @@
 				4AF0226E523A8F534C99C1A4 /* Pods_LijnTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB0FD7A22490241900E02966 /* Contextual Menu */ = {
+			isa = PBXGroup;
+			children = (
+				EB0FD7A32490243400E02966 /* MetadataEditor.swift */,
+			);
+			path = "Contextual Menu";
 			sourceTree = "<group>";
 		};
 		EB120EB52475A1D90059898C = {
@@ -224,6 +234,7 @@
 		EB31B5D9248D7E430068055F /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				EB0FD7A22490241900E02966 /* Contextual Menu */,
 				EB120EF12475A25E0059898C /* LibraryView.swift */,
 				EB120EF32475A28A0059898C /* BookView.swift */,
 			);
@@ -520,6 +531,7 @@
 				EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */,
 				EB31B5DB248D89710068055F /* K.swift in Sources */,
 				EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */,
+				EB0FD7A42490243400E02966 /* MetadataEditor.swift in Sources */,
 				EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */,
 				EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */,
 				EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */,

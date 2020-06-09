@@ -8,6 +8,7 @@
 
 import SwiftUI
 import RealmSwift
+import WaterfallGrid
 
 let realm = try! Realm()
 let documentsScanner = DocumentsScanner()
@@ -40,17 +41,22 @@ class BindableResults<Element>: ObservableObject where Element: RealmSwift.Realm
 struct LibraryView: View {
     @ObservedObject var bds = BindableResults<BandeDessinee>(results: try! Realm().objects(BandeDessinee.self))
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 44)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 36)!]
         UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 20)!]
         UITableView.appearance().separatorColor = .clear
     }
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(bds.results.sorted(byKeyPath: "title", ascending: true), id: \.uuid) { bd in
+            Section {
+                WaterfallGrid(bds.results.sorted(byKeyPath: "title", ascending: true), id: \.uuid) { bd in
+                    // Embed in navigation list
                     BookView(thumbnail: bd.thumbnailPath, title: bd.title)
                 }
+                    .gridStyle(
+                      columnsInPortrait: 3,
+                      columnsInLandscape: 4
+                    )
                 .navigationBarTitle("Library")
                 .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
                 
@@ -58,6 +64,7 @@ struct LibraryView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+
     
     struct LibraryView_Previews: PreviewProvider {
         static var previews: some View {
