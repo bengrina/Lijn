@@ -13,15 +13,15 @@ let realm = try! Realm()
 let documentsScanner = DocumentsScanner()
 
 class BindableResults<Element>: ObservableObject where Element: RealmSwift.RealmCollectionValue {
-
+    
     var results: Results<Element>
     private var token: NotificationToken!
-
+    
     init(results: Results<Element>) {
         self.results = results
         lateInit()
     }
-
+    
     func lateInit() {
         let realm = try! Realm()
         let bds = realm.objects(BandeDessinee.self)
@@ -29,7 +29,7 @@ class BindableResults<Element>: ObservableObject where Element: RealmSwift.Realm
             self!.results = self!.results
         }
     }
-
+    
     deinit {
         token.invalidate()
     }
@@ -47,23 +47,22 @@ struct LibraryView: View {
     
     var body: some View {
         NavigationView {
-            List(bds.results.sorted(byKeyPath: "title", ascending: true)) { bd in
-                BookView(thumbnail: bd.thumbnailPath, title: bd.title)
+            List {
+                ForEach(bds.results.sorted(byKeyPath: "title", ascending: true), id: \.uuid) { bd in
+                    BookView(thumbnail: bd.thumbnailPath, title: bd.title)
+                }
+                .navigationBarTitle("Library")
+                .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
+                
             }
-            .navigationBarTitle("Library")
-            .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
-
         }
         .navigationViewStyle(StackNavigationViewStyle())
-
-        
-
     }
-}
-
-struct LibraryView_Previews: PreviewProvider {
-    static var previews: some View {
-        LibraryView()
-        .previewDevice(.init(rawValue: "iPad (7th generation)"))
+    
+    struct LibraryView_Previews: PreviewProvider {
+        static var previews: some View {
+            LibraryView()
+                .previewDevice(.init(rawValue: "iPad (7th generation)"))
+        }
     }
 }

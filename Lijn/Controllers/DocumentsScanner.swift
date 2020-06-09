@@ -29,9 +29,8 @@ extension URL {
 
 struct DocumentsScanner {
     func addBooksFromDocumentsToDatabase() {
-        let files = try! FileManager.default.urls(for: .documentDirectory, skipsHiddenFiles: true)
+        let files = FileManager.default.urls(for: .documentDirectory, skipsHiddenFiles: true)
         let pdfFiles = files!.filter{ $0.pathExtension == "pdf" }
-        print(pdfFiles)
         for pdfFile in pdfFiles {
             let pdfFolder = pdfFile.deletingPathExtension()
             let potentialPath = pdfFolder.lastPathComponent + "/" + pdfFile.lastPathComponent
@@ -62,7 +61,12 @@ struct DocumentsScanner {
     }
     
     func fileIsInDatabase (filePath: String) -> Bool {
-            return realm.object(ofType: BandeDessinee.self, forPrimaryKey: filePath) == nil
+        let bd = realm.objects(BandeDessinee.self).filter("filePath = '\(filePath)'")
+        if bd.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
     func addBooksFromSubfoldersToDatabase() {
         let fileManager = FileManager.default
@@ -83,10 +87,8 @@ struct DocumentsScanner {
                 if fileIsInDatabase(filePath: path) {
                     let metadataToParse = subDir.appendingPathComponent(K.metadataFromCalibre)
                     let coverPath = dirName + "/" + K.coverFromCalibre
-                    print(coverPath)
                     if fileManager.fileExists(atPath: metadataToParse.path) {
                         // If a metadata.opf file is present in the folder
-                        print("Success for \(bdFile)")
                         metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: path, thumbnailUrl: coverPath)
                     } else {
                         // If there's no metadata.opf

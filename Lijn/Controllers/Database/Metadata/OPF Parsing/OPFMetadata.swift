@@ -8,7 +8,7 @@
 import Foundation
 
 class Metadata: CustomStringConvertible {
-
+    
     var uuid = ""
     var title = ""
     var creators = [""]
@@ -49,11 +49,9 @@ extension OPFParser: XMLParserDelegate {
             currentMetadata = Metadata()
         }
         if elementName == "meta" {
-            //print("\(attributeDict["content"]) : \(attributeDict["name"])")
             if attributeDict["name"] == "calibre:series" {
                 if let serie = attributeDict["content"] {
                     currentMetadata?.serie = serie
-                    print(serie)
                 }
             }
             if attributeDict["name"] == "calibre:series_index" {
@@ -62,15 +60,6 @@ extension OPFParser: XMLParserDelegate {
                 }
             }
         }
-        // Removed UUID parsing
-//        if elementName == "dc:identifier" {
-//            if let uuuid = attributeDict["opf:scheme"]{
-//                if uuuid == "uuid" {
-//                    isUUID = true
-//                } else  {isUUID = false}
-//
-//            }
-//        }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
@@ -89,8 +78,8 @@ extension OPFParser: XMLParserDelegate {
             }
         default:
             break
-
-    }
+            
+        }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
@@ -99,35 +88,32 @@ extension OPFParser: XMLParserDelegate {
 }
 
 class MetadataController {
-func metadataDisplay() {
-    do {
-     if let xmlUrl = Bundle.main.url(forResource: "metadata", withExtension: "opf") {
-        let opfParser = OPFParser(withURL: xmlUrl)
-        let bandesDessinees = opfParser.parse()
-        for bandeDessinee in bandesDessinees {
-            bandeDessinee.creators = bandeDessinee.creators.filter({ $0 != ""})
-            print(bandeDessinee)
-        }
-    } else {print("fichier non trouvé")}
-    } catch {print(error)}
-}
+    func metadataDisplay() {
+        do {
+            if let xmlUrl = Bundle.main.url(forResource: "metadata", withExtension: "opf") {
+                let opfParser = OPFParser(withURL: xmlUrl)
+                let bandesDessinees = opfParser.parse()
+                for bandeDessinee in bandesDessinees {
+                    bandeDessinee.creators = bandeDessinee.creators.filter({ $0 != ""})
+                }
+            } else {print("fichier non trouvé")}
+        } catch {print(error)}
+    }
     
     func addMetadataToDatabase(ressource: String) {
-         if let xmlUrl = Bundle.main.url(forResource: ressource, withExtension: "opf") {
+        if let xmlUrl = Bundle.main.url(forResource: ressource, withExtension: "opf") {
             let opfParser = OPFParser(withURL: xmlUrl)
             let databaseController = DatabaseController()
             let bandeDessinee = opfParser.parse()
             bandeDessinee[0].creators = bandeDessinee[0].creators.filter({ $0 != ""})
-            print("Adding\n\(bandeDessinee)\n to database ")
             databaseController.writeToDatabase(file: ressource, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: "cover.jpg", percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
-            }
         }
+    }
     func addMetadataToDatabase(url: URL, fileUrl: String, thumbnailUrl: String) {
         let opfParser = OPFParser(withURL: url)
         let databaseController = DatabaseController()
         let bandeDessinee = opfParser.parse()
         bandeDessinee[0].creators = bandeDessinee[0].creators.filter({ $0 != ""})
-        print("Adding\n\(bandeDessinee)\n to database ")
         databaseController.writeToDatabase(file: fileUrl, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: thumbnailUrl, percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
     }
 }
