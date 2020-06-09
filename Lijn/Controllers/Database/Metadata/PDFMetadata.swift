@@ -18,11 +18,15 @@ struct PDFMetadata {
         }
         let pageSize = page.bounds(for: .mediaBox)
         let pdfScale = CGFloat(K.thumbWidth) / pageSize.width
+        
+        // Ajuster la taille du rectangle!!
+//        let size = CGSize(width: CGFloat(CGFloat(K.thumbWidth) * UIScreen.main.scale), height: CGFloat(CGFloat(K.thumbHeight) * UIScreen.main.scale))
 
-        // Apply if you're displaying the thumbnail on screen
+        // Ver. 1
         let scale = UIScreen.main.scale * pdfScale
         let screenSize = CGSize(width: pageSize.width * scale,
                                 height: pageSize.height * scale)
+        
 
         return page.thumbnail(of: screenSize, for: .mediaBox)
         

@@ -37,11 +37,11 @@ struct SettingsView: View {
             Button(action: {databaseController.printDatabaseContents()}) {
                         Text("Print database contents")
             }
-            Button(action: {documentsScanner.printDocumentsDirectoryContents()}) {
-                        Text("printDocumentsDirectoryContents")
+            Button(action: {documentsScanner.addBooksFromDocumentsToDatabase()}) {
+                        Text("add books from Documents folder")
             }
-            Button(action: {documentsScanner.printSubdirectories()}) {
-                        Text("printSubdirectories")
+            Button(action: {documentsScanner.addBooksFromSubfoldersToDatabase()}) {
+                        Text("Add books from subfolders")
             }
 
         }
