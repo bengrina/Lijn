@@ -62,14 +62,15 @@ extension OPFParser: XMLParserDelegate {
                 }
             }
         }
-        if elementName == "dc:identifier" {
-            if let uuuid = attributeDict["opf:scheme"]{
-                if uuuid == "uuid" {
-                    isUUID = true
-                } else  {isUUID = false}
-                
-            }
-        }
+        // Removed UUID parsing
+//        if elementName == "dc:identifier" {
+//            if let uuuid = attributeDict["opf:scheme"]{
+//                if uuuid == "uuid" {
+//                    isUUID = true
+//                } else  {isUUID = false}
+//
+//            }
+//        }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
@@ -118,7 +119,7 @@ func metadataDisplay() {
             let bandeDessinee = opfParser.parse()
             bandeDessinee[0].creators = bandeDessinee[0].creators.filter({ $0 != ""})
             print("Adding\n\(bandeDessinee)\n to database ")
-            databaseController.writeToDatabase(file: ressource, uuid: bandeDessinee[0].uuid, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: "cover.jpg", percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
+            databaseController.writeToDatabase(file: ressource, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: "cover.jpg", percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
             }
         }
     func addMetadataToDatabase(url: URL, fileUrl: String, thumbnailUrl: String) {
@@ -127,7 +128,7 @@ func metadataDisplay() {
         let bandeDessinee = opfParser.parse()
         bandeDessinee[0].creators = bandeDessinee[0].creators.filter({ $0 != ""})
         print("Adding\n\(bandeDessinee)\n to database ")
-        databaseController.writeToDatabase(file: fileUrl, uuid: bandeDessinee[0].uuid, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: thumbnailUrl, percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
+        databaseController.writeToDatabase(file: fileUrl, title: bandeDessinee[0].title, creators: bandeDessinee[0].creators, thumbnail: thumbnailUrl, percentageRead: 0, editor: "unimplemented", serie: bandeDessinee[0].serie, serieNumber: bandeDessinee[0].serieIndex, publishedDate: nil)
     }
 }
 

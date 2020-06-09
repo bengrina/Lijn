@@ -11,7 +11,7 @@ import RealmSwift
 
 class BandeDessinee: Object, Identifiable {
     
-    @objc dynamic var uuid = ""
+    @objc dynamic var uuid = UUID().uuidString
     @objc dynamic var title = ""
     let creators = List<Creator>()
     @objc dynamic var thumbnailPath = "blankThumbnail"
@@ -24,7 +24,7 @@ class BandeDessinee: Object, Identifiable {
     @objc dynamic var addedDate = Date(timeIntervalSinceNow: 0)
     
     override static func primaryKey() -> String? {
-        return "filePath"
+        return "uuid"
     }
 
 }
@@ -36,7 +36,6 @@ class Creator: Object{
 struct DatabaseController {
 
     func writeToDatabase(file: String,
-                         uuid: String,
                          title: String?,
                          creators: [String]?,
                          thumbnail: String?,
@@ -51,7 +50,7 @@ struct DatabaseController {
         
 
         bd.filePath = file
-        bd.uuid = uuid
+        bd.uuid = UUID().uuidString
 
         if let tit = title {
         bd.title = tit
@@ -111,7 +110,7 @@ struct DatabaseController {
 
         do {
             let fileURLs = try fileManager.contentsOfDirectory(at: documentsFolder, includingPropertiesForKeys: nil)
-            writeToDatabase(file: fileURLs[0].absoluteString, uuid: "testuuid", title: nil, creators: nil, thumbnail: nil, percentageRead: nil, editor: nil, serie: nil, serieNumber: nil, publishedDate: nil)
+            writeToDatabase(file: fileURLs[0].absoluteString, title: nil, creators: nil, thumbnail: nil, percentageRead: nil, editor: nil, serie: nil, serieNumber: nil, publishedDate: nil)
         } catch {
             print("Error while enumerating files \(documentsFolder.path): \(error.localizedDescription)")
         }
