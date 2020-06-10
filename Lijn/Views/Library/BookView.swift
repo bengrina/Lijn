@@ -34,48 +34,50 @@ struct BookView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Image(uiImage: thumbnail(thumbnail))
-                .resizable()
-                .frame(width: 192, height: 256)
-                .shadow(radius: 4, x: 5, y: -5)
-                .contextMenu {
-                    Button(action:{
-                        self.showingMetadataEditor.toggle()
-                    }){
-                        HStack {
-                            Image(systemName: "tag")
-                            Text("Edit metadata")
+        NavigationLink(destination: ComicView()) {
+            VStack(alignment: .leading) {
+                Image(uiImage: thumbnail(thumbnail))
+                    .resizable()
+                    .frame(width: 192, height: 256)
+                    .shadow(radius: 4, x: 5, y: -5)
+                    .contextMenu {
+                        Button(action:{
+                            self.showingMetadataEditor.toggle()
+                        }){
+                            HStack {
+                                Image(systemName: "tag")
+                                Text("Edit metadata")
+                            }
                         }
-                    }
-                    .sheet(isPresented: $showingMetadataEditor) {
-                        MetadataEditor()
-                    }
-                    Button(action:{
-                        print("Button 1")
-                    }){
-                        HStack {
-                            Image(systemName: "trash")
-                            Text("Delete")
+                        .sheet(isPresented: $showingMetadataEditor) {
+                            MetadataEditor()
                         }
-                        
-                    }
-                    Button(action:{
-                        print("Button 2")
-                    }){
-                        HStack {
-                            Image(systemName: "square.and.arrow.up")
-                            Text("Share")
+                        Button(action:{
+                            print("Button 1")
+                        }){
+                            HStack {
+                                Image(systemName: "trash")
+                                Text("Delete")
+                            }
+                            
                         }
-                    }
+                        Button(action:{
+                            print("Button 2")
+                        }){
+                            HStack {
+                                Image(systemName: "square.and.arrow.up")
+                                Text("Share")
+                            }
+                        }
+                }
+                Text(title)
+                    .font(.system(size: 16, weight: .light, design: .default))
+                    .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
+                    .padding(.top, -9.0)
+                    .frame(width: 192, height: 18)
+                
             }
-            Text(title)
-                .font(.system(size: 16, weight: .light, design: .default))
-                .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
-                .padding(.top, -9.0)
-                .frame(width: 192, height: 18)
-            
-        }
+        }.buttonStyle(PlainButtonStyle())
     }
 }
 

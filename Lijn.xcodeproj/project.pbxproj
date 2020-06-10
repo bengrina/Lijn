@@ -12,6 +12,8 @@
 		4C0398024EEAA2246032A195 /* Pods_Lijn_LijnUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8FBC4D03C709D8761AA245 /* Pods_Lijn_LijnUITests.framework */; };
 		EB0C6F6024818C2600C43AE0 /* OPFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */; };
 		EB0FD7A42490243400E02966 /* MetadataEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FD7A32490243400E02966 /* MetadataEditor.swift */; };
+		EB0FD7A62490266900E02966 /* CBZMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FD7A52490266900E02966 /* CBZMetadata.swift */; };
+		EB0FD7A82490E20600E02966 /* ComicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FD7A72490E20600E02966 /* ComicView.swift */; };
 		EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC12475A1D90059898C /* AppDelegate.swift */; };
 		EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC32475A1D90059898C /* SceneDelegate.swift */; };
 		EB120EC62475A1D90059898C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EC52475A1D90059898C /* ContentView.swift */; };
@@ -61,6 +63,8 @@
 		C7CA6F7E9A98E7A7875B1399 /* Pods-LijnTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LijnTests.debug.xcconfig"; path = "Target Support Files/Pods-LijnTests/Pods-LijnTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPFMetadata.swift; sourceTree = "<group>"; };
 		EB0FD7A32490243400E02966 /* MetadataEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataEditor.swift; sourceTree = "<group>"; };
+		EB0FD7A52490266900E02966 /* CBZMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBZMetadata.swift; sourceTree = "<group>"; };
+		EB0FD7A72490E20600E02966 /* ComicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ComicView.swift; path = Library/ComicView.swift; sourceTree = "<group>"; };
 		EB120EBE2475A1D90059898C /* Lijn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lijn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB120EC12475A1D90059898C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB120EC32475A1D90059898C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,14 +217,6 @@
 			path = LijnUITests;
 			sourceTree = "<group>";
 		};
-		EB15BCF02482F3650001FA69 /* OPF Parsing */ = {
-			isa = PBXGroup;
-			children = (
-				EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */,
-			);
-			path = "OPF Parsing";
-			sourceTree = "<group>";
-		};
 		EB28D2A2248A3A0F00012380 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,8 +240,9 @@
 		EB8F3CC5248AC68D00297DA9 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				EB15BCF02482F3650001FA69 /* OPF Parsing */,
+				EB0C6F5F24818C2600C43AE0 /* OPFMetadata.swift */,
 				EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */,
+				EB0FD7A52490266900E02966 /* CBZMetadata.swift */,
 			);
 			path = Metadata;
 			sourceTree = "<group>";
@@ -262,6 +259,7 @@
 		EBC8E20E2476C3E600C7B620 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EB0FD7A72490E20600E02966 /* ComicView.swift */,
 				EB31B5D9248D7E430068055F /* Library */,
 				EB55A3602477111C0067FD53 /* ImportView.swift */,
 				EB52946D247D80F200FE4034 /* SettingsView.swift */,
@@ -524,6 +522,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0FD7A82490E20600E02966 /* ComicView.swift in Sources */,
 				EB0C6F6024818C2600C43AE0 /* OPFMetadata.swift in Sources */,
 				EBE4673B2484250000172FBC /* LibraryController.swift in Sources */,
 				EB120EF22475A25E0059898C /* LibraryView.swift in Sources */,
@@ -538,6 +537,7 @@
 				EB120EC62475A1D90059898C /* ContentView.swift in Sources */,
 				EB120EF42475A28A0059898C /* BookView.swift in Sources */,
 				EBC8E2142476CB2E00C7B620 /* DatabaseController.swift in Sources */,
+				EB0FD7A62490266900E02966 /* CBZMetadata.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
