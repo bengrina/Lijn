@@ -55,7 +55,19 @@ struct DocumentsScanner {
                 }
                 let thumbnailPath = pdfFolder.lastPathComponent + "/" + K.coverFromCalibre
                 
-                databaseController.writeToDatabase(file: potentialPath, title: String(pdfFile.lastPathComponent), creators: nil, thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
+                let metadata = pdfMetadata.getMetadata(url: folderPath)
+                var comicTitle = ""
+                var comicAuthors: [String]?
+                if let title = metadata["title"]{
+                    comicTitle = title!
+                }
+                if let author = metadata["author"]{
+                    if let comicAuthor = author{
+                        comicAuthors?.append(comicAuthor)
+                    }
+                }
+                
+                databaseController.writeToDatabase(file: potentialPath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
             }
         }
     }
@@ -92,6 +104,9 @@ struct DocumentsScanner {
                         metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: path, thumbnailUrl: coverPath)
                     } else {
                         // If there's no metadata.opf
+                        let metadata = pdfMetadata.getMetadata(url: bdFile)
+                        var comicTitle = ""
+                        var comicAuthors: [String]?
                         print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")
                         if bdFile.pathExtension == "pdf" {
                             if let thumbnail = pdfMetadata.generateThumbnail(url: bdFile) {
@@ -104,8 +119,17 @@ struct DocumentsScanner {
                                 }
                             }
                             
+                            if let title = metadata["title"]{
+                                comicTitle = title!
+                            }
+                            if let author = metadata["author"]{
+                                if let comicAuthor = author{
+                                    comicAuthors?.append(comicAuthor)
+                                }
+                            }
+                            
                         }
-                        databaseController.writeToDatabase(file: path, title: bdFileName, creators: nil, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
+                        databaseController.writeToDatabase(file: path, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
                     }
                 }
             }
