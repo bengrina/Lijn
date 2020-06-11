@@ -51,7 +51,7 @@ struct LibraryView: View {
             Section {
                 WaterfallGrid(bds.results.sorted(byKeyPath: "title", ascending: true), id: \.uuid) { bd in
                     // Embed in navigation list
-                    BookView(thumbnail: bd.thumbnailPath, title: bd.title)
+                    BookView(thumbnail: bd.thumbnailPath, title: bd.title, filePath: bd.filePath)
                 }
                     .gridStyle(
                       columnsInPortrait: 3,

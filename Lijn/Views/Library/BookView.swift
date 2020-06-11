@@ -14,6 +14,9 @@ struct BookView: View {
     
     var thumbnail: String?
     var title: String
+    var filePath: String
+    
+    
     
     func thumbnail(_ thumbnail: String?) -> UIImage{
         if let cover = thumbnail {
@@ -31,59 +34,66 @@ struct BookView: View {
         }
     }
     
-    
-    var body: some View {
-        
-        NavigationLink(destination: ComicView()) {
-            VStack(alignment: .leading) {
-                Image(uiImage: thumbnail(thumbnail))
-                    .resizable()
-                    .frame(width: 192, height: 256)
-                    .shadow(radius: 4, x: 5, y: -5)
-                    .contextMenu {
-                        Button(action:{
-                            self.showingMetadataEditor.toggle()
-                        }){
-                            HStack {
-                                Image(systemName: "tag")
-                                Text("Edit metadata")
-                            }
-                        }
-                        .sheet(isPresented: $showingMetadataEditor) {
-                            MetadataEditor()
-                        }
-                        Button(action:{
-                            print("Button 1")
-                        }){
-                            HStack {
-                                Image(systemName: "trash")
-                                Text("Delete")
-                            }
-                            
-                        }
-                        Button(action:{
-                            print("Button 2")
-                        }){
-                            HStack {
-                                Image(systemName: "square.and.arrow.up")
-                                Text("Share")
-                            }
-                        }
-                }
-                Text(title)
-                    .font(.system(size: 16, weight: .light, design: .default))
-                    .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
-                    .padding(.top, -9.0)
-                    .frame(width: 192, height: 18)
-                
-            }
-        }.buttonStyle(PlainButtonStyle())
+    func filePath(_ filePath: String) -> URL {
+        let url = documentsScanner.getDocumentsDirectory().appendingPathComponent(filePath)
+        return url
     }
+
+
+
+var body: some View {
+    
+    
+    NavigationLink(destination: ComicView(url: filePath(filePath))) {
+        VStack(alignment: .leading) {
+            Image(uiImage: thumbnail(thumbnail))
+                .resizable()
+                .frame(width: 192, height: 256)
+                .shadow(radius: 4, x: 5, y: -5)
+                .contextMenu {
+                    Button(action:{
+                        self.showingMetadataEditor.toggle()
+                    }){
+                        HStack {
+                            Image(systemName: "tag")
+                            Text("Edit metadata")
+                        }
+                    }
+                    .sheet(isPresented: $showingMetadataEditor) {
+                        MetadataEditor()
+                    }
+                    Button(action:{
+                        print("Button 1")
+                    }){
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("Delete")
+                        }
+                        
+                    }
+                    Button(action:{
+                        print("Button 2")
+                    }){
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                            Text("Share")
+                        }
+                    }
+            }
+            Text(title)
+                .font(.system(size: 16, weight: .light, design: .default))
+                .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
+                .padding(.top, -9.0)
+                .frame(width: 192, height: 18)
+            
+        }
+    }.buttonStyle(PlainButtonStyle())
+}
 }
 
 struct BookView_Previews: PreviewProvider {
     static var previews: some View {
-        BookView(thumbnail: "blankThumbnail", title: "Sample Book BABABABABBABA")
+        BookView(thumbnail: "blankThumbnail", title: "Sample Book", filePath: "Sample Path")
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }
