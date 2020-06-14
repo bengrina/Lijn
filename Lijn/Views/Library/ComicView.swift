@@ -11,9 +11,18 @@ import PDFKit
 
 struct ComicView: View {
     @EnvironmentObject var userData: UserData
+    @State var showOverlay = false
     var url: URL
     var body: some View {
-        PDFKitRepresentedView(url)
+        ZStack{
+        PDFKitRepresentedView(url).onTapGesture {
+            print("Tapped")
+            self.showOverlay.toggle()
+        }
+            if showOverlay {
+                ComicOverlay()
+            }
+        }
     }
 }
 struct PDFKitRepresentedView: UIViewRepresentable {

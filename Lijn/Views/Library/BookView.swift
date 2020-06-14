@@ -31,6 +31,10 @@ struct BookView: View {
             return UIImage(imageLiteralResourceName: "blankThumbnail")
         }
     }
+    func filePath(_ filePath: String) -> URL {
+        let url = documentsScanner.getDocumentsDirectory().appendingPathComponent(filePath)
+        return url
+    }
     
     var body: some View {
         VStack(alignment: .leading) {

@@ -26,6 +26,7 @@
 		EB120EF42475A28A0059898C /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB120EF32475A28A0059898C /* BookView.swift */; };
 		EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */; };
 		EB31B5DB248D89710068055F /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31B5DA248D89710068055F /* K.swift */; };
+		EB4585602496BDB9002DF92A /* ComicOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45855F2496BDB9002DF92A /* ComicOverlay.swift */; };
 		EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB52946D247D80F200FE4034 /* SettingsView.swift */; };
 		EB55A3612477111C0067FD53 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB55A3602477111C0067FD53 /* ImportView.swift */; };
 		EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */; };
@@ -85,6 +86,7 @@
 		EB120EF32475A28A0059898C /* BookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsScanner.swift; sourceTree = "<group>"; };
 		EB31B5DA248D89710068055F /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
+		EB45855F2496BDB9002DF92A /* ComicOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicOverlay.swift; sourceTree = "<group>"; };
 		EB52946D247D80F200FE4034 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EB55A3602477111C0067FD53 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
 		EB8F3CC6248AC6BD00297DA9 /* PDFMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFMetadata.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0FD7A72490E20600E02966 /* ComicView.swift */,
+				EB45855F2496BDB9002DF92A /* ComicOverlay.swift */,
 				EB31B5D9248D7E430068055F /* Library */,
 				EB55A3602477111C0067FD53 /* ImportView.swift */,
 				EB52946D247D80F200FE4034 /* SettingsView.swift */,
@@ -535,6 +538,7 @@
 				EB55A3612477111C0067FD53 /* ImportView.swift in Sources */,
 				EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */,
 				EB31B5DB248D89710068055F /* K.swift in Sources */,
+				EB4585602496BDB9002DF92A /* ComicOverlay.swift in Sources */,
 				EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */,
 				EB0FD7A42490243400E02966 /* MetadataEditor.swift in Sources */,
 				EBF3B6122496B14700F97D12 /* CustomViewController.swift in Sources */,
