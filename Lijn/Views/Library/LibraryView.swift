@@ -46,25 +46,40 @@ struct LibraryView: View {
         UITableView.appearance().separatorColor = .clear
     }
     
+    @Environment(\.viewController) private var viewControllerHolder:
+    ViewControllerHolder
+    
+    private var viewController: UIViewController? {
+        self.viewControllerHolder.value
+    }
+    
+    func filePath(_ filePath: String) -> URL {
+        let url = documentsScanner.getDocumentsDirectory().appendingPathComponent(filePath)
+        return url
+    }
+    
     var body: some View {
         NavigationView {
             Section {
                 WaterfallGrid(bds.results.sorted(byKeyPath: "title", ascending: true), id: \.uuid) { bd in
-                    // Embed in navigation list
-                    BookView(thumbnail: bd.thumbnailPath, title: bd.title, filePath: bd.filePath)
+                    BookView(thumbnail: bd.thumbnailPath, title: bd.title, filePath: bd.filePath).onTapGesture {
+                        self.viewController?.present(style: .fullScreen) {
+                            ComicView(url: self.filePath(bd.filePath))
+                        }
+                    }
                 }
-                    .gridStyle(
-                      columnsInPortrait: 3,
-                      columnsInLandscape: 4
-                    )
-                .navigationBarTitle("Library")
-                .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
+                .gridStyle(
+                    columnsInPortrait: 3,
+                    columnsInLandscape: 4
+                )
+                    .navigationBarTitle("Library")
+                    .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
                 
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
-
+    
     
     struct LibraryView_Previews: PreviewProvider {
         static var previews: some View {

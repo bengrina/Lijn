@@ -11,45 +11,54 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection = 0
- 
+    @EnvironmentObject var userData: UserData
+    
     var body: some View {
-        TabView(selection: $selection){
+        ZStack{
+            TabView(selection: $selection){
                 LibraryView()
-                        .font(.title)
-                        .tabItem {
-                            VStack {
-                                Image(systemName: "book")
-                                Text("Library")
-                            }
+                    .font(.title)
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "book")
+                            Text("Library")
                         }
-                .tag(0)
-            ImportView()
-            .font(.title)
-            .tabItem {
-                VStack {
-                    Image(systemName: "folder")
-                    Text("Import Comic")
+                        
                 }
-            }
-            .tag(1)
-            Text("Get new books")
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "globe")
-                        Text("Browse Comics")
-                    }
+                .tag(0)
+                ImportView()
+                    .font(.title)
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "folder")
+                            Text("Import Comic")
+                        }
+                }
+                .tag(1)
+                Text("Get new books")
+                    .font(.title)
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "globe")
+                            Text("Browse Comics")
+                        }
                 }
                 .tag(2)
-            SettingsView()
-            .font(.title)
-            .tabItem {
-                VStack {
-                    Image(systemName: "gear")
-                    Text("Settings")
+                SettingsView()
+                    .font(.title)
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "gear")
+                            Text("Settings")
+                        }
                 }
+                .tag(3)
             }
-            .tag(3)
+            if userData.showFullScreen {
+                
+                ComicView(url: userData.filePath)
+                
+            }
         }
     }
 }

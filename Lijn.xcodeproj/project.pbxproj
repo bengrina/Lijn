@@ -32,7 +32,9 @@
 		EBBAA467247DC03D0083A607 /* NewYorkExtraLarge-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAA465247DBFFC0083A607 /* NewYorkExtraLarge-Medium.otf */; };
 		EBBAA468247DC0400083A607 /* NewYorkExtraLarge-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAA464247DBFFA0083A607 /* NewYorkExtraLarge-Bold.otf */; };
 		EBC8E2142476CB2E00C7B620 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */; };
+		EBE025C724929E7800C27764 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE025C624929E7800C27764 /* UserData.swift */; };
 		EBE4673B2484250000172FBC /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4673A2484250000172FBC /* LibraryController.swift */; };
+		EBF3B6122496B14700F97D12 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF3B6112496B14700F97D12 /* CustomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +91,9 @@
 		EBBAA464247DBFFA0083A607 /* NewYorkExtraLarge-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Bold.otf"; sourceTree = "<group>"; };
 		EBBAA465247DBFFC0083A607 /* NewYorkExtraLarge-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Medium.otf"; sourceTree = "<group>"; };
 		EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
+		EBE025C624929E7800C27764 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		EBE4673A2484250000172FBC /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryController.swift; sourceTree = "<group>"; };
+		EBF3B6112496B14700F97D12 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		F9158B046F5FD14E57B3CC6A /* Pods-Lijn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lijn.release.xcconfig"; path = "Target Support Files/Pods-Lijn/Pods-Lijn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				EB120EC12475A1D90059898C /* AppDelegate.swift */,
+				EBE025C624929E7800C27764 /* UserData.swift */,
 				EB31B5DA248D89710068055F /* K.swift */,
 				EBBAA466247DC00A0083A607 /* Fonts */,
 				EB120EC32475A1D90059898C /* SceneDelegate.swift */,
@@ -220,7 +225,6 @@
 		EB28D2A2248A3A0F00012380 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EBE4673A2484250000172FBC /* LibraryController.swift */,
 				EBC8E2102476C3FA00C7B620 /* Database */,
 				EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */,
 			);
@@ -232,6 +236,7 @@
 			children = (
 				EB0FD7A22490241900E02966 /* Contextual Menu */,
 				EB120EF12475A25E0059898C /* LibraryView.swift */,
+				EBF3B6112496B14700F97D12 /* CustomViewController.swift */,
 				EB120EF32475A28A0059898C /* BookView.swift */,
 			);
 			path = Library;
@@ -272,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */,
+				EBE4673A2484250000172FBC /* LibraryController.swift */,
 				EB8F3CC5248AC68D00297DA9 /* Metadata */,
 			);
 			path = Database;
@@ -531,10 +537,12 @@
 				EB31B5DB248D89710068055F /* K.swift in Sources */,
 				EB52946E247D80F200FE4034 /* SettingsView.swift in Sources */,
 				EB0FD7A42490243400E02966 /* MetadataEditor.swift in Sources */,
+				EBF3B6122496B14700F97D12 /* CustomViewController.swift in Sources */,
 				EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */,
 				EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */,
 				EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */,
 				EB120EC62475A1D90059898C /* ContentView.swift in Sources */,
+				EBE025C724929E7800C27764 /* UserData.swift in Sources */,
 				EB120EF42475A28A0059898C /* BookView.swift in Sources */,
 				EBC8E2142476CB2E00C7B620 /* DatabaseController.swift in Sources */,
 				EB0FD7A62490266900E02966 /* CBZMetadata.swift in Sources */,

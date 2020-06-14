@@ -10,13 +10,11 @@ import SwiftUI
 
 struct BookView: View {
     @State var showingMetadataEditor = false
-    
+    @EnvironmentObject var userData: UserData
     
     var thumbnail: String?
     var title: String
     var filePath: String
-    
-    
     
     func thumbnail(_ thumbnail: String?) -> UIImage{
         if let cover = thumbnail {
@@ -34,17 +32,7 @@ struct BookView: View {
         }
     }
     
-    func filePath(_ filePath: String) -> URL {
-        let url = documentsScanner.getDocumentsDirectory().appendingPathComponent(filePath)
-        return url
-    }
-
-
-
-var body: some View {
-    
-    
-    NavigationLink(destination: ComicView(url: filePath(filePath))) {
+    var body: some View {
         VStack(alignment: .leading) {
             Image(uiImage: thumbnail(thumbnail))
                 .resizable()
@@ -85,15 +73,13 @@ var body: some View {
                 .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
                 .padding(.top, -9.0)
                 .frame(width: 192, height: 18)
-            
         }
-    }.buttonStyle(PlainButtonStyle())
-}
-}
-
-struct BookView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookView(thumbnail: "blankThumbnail", title: "Sample Book", filePath: "Sample Path")
-            .previewLayout(.fixed(width: 300, height: 300))
+    }
+    
+    struct BookView_Previews: PreviewProvider {
+        static var previews: some View {
+            BookView(thumbnail: "blankThumbnail", title: "Sample Book", filePath: "Sample Path")
+                .previewLayout(.fixed(width: 300, height: 300))
+        }
     }
 }
