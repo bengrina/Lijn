@@ -12,6 +12,7 @@ import PDFKit
 struct ComicView: View {
     @EnvironmentObject var userData: UserData
     @State var showOverlay = false
+    @Environment(\.presentationMode) var presentationMode
     var url: URL
     var body: some View {
         ZStack{
