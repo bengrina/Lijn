@@ -16,14 +16,21 @@ struct ComicView: View {
     var url: URL
     var body: some View {
         ZStack{
-        PDFKitRepresentedView(url).onTapGesture {
-            print("Tapped")
-            self.showOverlay.toggle()
-        }
+            PDFKitRepresentedView(url).onTapGesture {
+                print("Tapped")
+                self.showOverlay.toggle()
+            }.animation(.easeInOut)
             if showOverlay {
                 ComicOverlay()
             }
-        }
+            Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+                self.userData.showFullScreen.toggle()
+                
+            }){ Text("dismiss view")
+            }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 struct PDFKitRepresentedView: UIViewRepresentable {

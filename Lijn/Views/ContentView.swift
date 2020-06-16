@@ -56,7 +56,7 @@ struct ContentView: View {
             }
             if userData.showFullScreen {
                 
-                ComicView(url: userData.filePath)
+                ComicView(url: self.userData.filePath).transition(.slide)
                 
             }
         }

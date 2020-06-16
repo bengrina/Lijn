@@ -53,38 +53,32 @@ struct LibraryView: View {
         self.viewControllerHolder.value
     }
     
-    func filePath(_ filePath: String) -> URL {
-        let url = documentsScanner.getDocumentsDirectory().appendingPathComponent(filePath)
-        return url
-    }
+    
     
     var body: some View {
         NavigationView {
             Section {
                 WaterfallGrid(bds.results.sorted(byKeyPath: "title", ascending: true), id: \.uuid) { bd in
-                    BookView(thumbnail: bd.thumbnailPath, title: bd.title, filePath: bd.filePath).onTapGesture {
-                        self.viewController?.present(style: .fullScreen) {
-                            ComicView(url: self.filePath(bd.filePath))
-                        }
-                    }
+                    BookView(thumbnail: bd.thumbnailPath, title: bd.title, filePath: bd.filePath)
+                    
                 }
-                .gridStyle(
-                    columnsInPortrait: 3,
-                    columnsInLandscape: 4
-                )
-                    .navigationBarTitle("Library")
-                    .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
-                
             }
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-    }
-    
-    
-    struct LibraryView_Previews: PreviewProvider {
-        static var previews: some View {
-            LibraryView()
-                .previewDevice(.init(rawValue: "iPad (7th generation)"))
-        }
+            .gridStyle(
+                columnsInPortrait: 3,
+                columnsInLandscape: 4
+            )
+                .navigationBarTitle("Library")
+                .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
+            
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
+
+
+struct LibraryView_Previews: PreviewProvider {
+    static var previews: some View {
+        LibraryView()
+            .previewDevice(.init(rawValue: "iPad (7th generation)"))
+    }
+}
+

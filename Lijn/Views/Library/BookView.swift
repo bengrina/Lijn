@@ -37,6 +37,7 @@ struct BookView: View {
     }
     
     var body: some View {
+        //        NavigationLink(destination: ComicView(url: filePath(filePath))){
         VStack(alignment: .leading) {
             Image(uiImage: thumbnail(thumbnail))
                 .resizable()
@@ -69,15 +70,23 @@ struct BookView: View {
                         HStack {
                             Image(systemName: "square.and.arrow.up")
                             Text("Share")
+                            
                         }
                     }
             }
             Text(title)
                 .font(.system(size: 16, weight: .light, design: .default))
-                .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38, opacity: 1.0))
+                .foregroundColor(Color(.label))
                 .padding(.top, -9.0)
                 .frame(width: 192, height: 18)
+            
+            
+        }.buttonStyle(PlainButtonStyle())
+            .onTapGesture {
+                self.userData.filePath = self.filePath(self.filePath)
+                self.userData.showFullScreen.toggle()
         }
+        
     }
     
     struct BookView_Previews: PreviewProvider {
