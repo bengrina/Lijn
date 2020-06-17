@@ -37,7 +37,6 @@ struct BookView: View {
     }
     
     var body: some View {
-        //        NavigationLink(destination: ComicView(url: filePath(filePath))){
         VStack(alignment: .leading) {
             Image(uiImage: thumbnail(thumbnail))
                 .resizable()

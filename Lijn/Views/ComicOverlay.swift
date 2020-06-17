@@ -9,9 +9,18 @@
 import SwiftUI
 
 struct ComicOverlay: View {
+    @EnvironmentObject var userData: UserData
     var body: some View {
-        Rectangle().size(width: 500, height: 60).foregroundColor(.blue)
-//        Text("Hello, World!")
+        ZStack {
+            Rectangle().size(width: UIScreen.main.bounds.size.width, height: 60).foregroundColor(Color(.systemFill))
+            Button(action: {
+                self.userData.showFullScreen.toggle()
+            }) {
+                Image(systemName: "arrow.left")
+            }
+            
+        }.frame(width: UIScreen.main.bounds.size.width, height: 60, alignment: .top)
+        
     }
 }
 

@@ -11,25 +11,19 @@ import PDFKit
 
 struct ComicView: View {
     @EnvironmentObject var userData: UserData
-    @State var showOverlay = false
+    @State var showOverlay = true
     @Environment(\.presentationMode) var presentationMode
     var url: URL
     var body: some View {
-        ZStack{
+        ZStack(alignment: .top){
             PDFKitRepresentedView(url).onTapGesture {
-                print("Tapped")
                 self.showOverlay.toggle()
-            }.animation(.easeInOut)
+            }
             if showOverlay {
                 ComicOverlay()
             }
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-                self.userData.showFullScreen.toggle()
-                
-            }){ Text("dismiss view")
             }
-        }.navigationBarTitle("")
+        .navigationBarTitle("")
         .navigationBarHidden(true)
     }
 }

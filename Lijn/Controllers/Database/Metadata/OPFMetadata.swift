@@ -89,15 +89,13 @@ extension OPFParser: XMLParserDelegate {
 
 class MetadataController {
     func metadataDisplay() {
-        do {
-            if let xmlUrl = Bundle.main.url(forResource: "metadata", withExtension: "opf") {
-                let opfParser = OPFParser(withURL: xmlUrl)
-                let bandesDessinees = opfParser.parse()
-                for bandeDessinee in bandesDessinees {
-                    bandeDessinee.creators = bandeDessinee.creators.filter({ $0 != ""})
-                }
-            } else {print("fichier non trouvé")}
-        } catch {print(error)}
+        if let xmlUrl = Bundle.main.url(forResource: "metadata", withExtension: "opf") {
+            let opfParser = OPFParser(withURL: xmlUrl)
+            let bandesDessinees = opfParser.parse()
+            for bandeDessinee in bandesDessinees {
+                bandeDessinee.creators = bandeDessinee.creators.filter({ $0 != ""})
+            }
+        } else {print("fichier non trouvé")}
     }
     
     func addMetadataToDatabase(ressource: String) {
