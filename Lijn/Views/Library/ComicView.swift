@@ -38,6 +38,8 @@ struct PDFKitRepresentedView: UIViewRepresentable {
         let pdfView = PDFView()
         pdfView.document = PDFDocument(url: self.url)
         pdfView.autoScales = true
+        pdfView.displayDirection = PDFDisplayDirection(rawValue: 1)!
+        pdfView.usePageViewController(true)
         return pdfView
     }
     

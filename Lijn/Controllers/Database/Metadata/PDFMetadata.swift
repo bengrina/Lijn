@@ -33,20 +33,20 @@ struct PDFMetadata {
                 let document = PDFDocument(data: data) else {
                     var titleFromUrl = url
                     titleFromUrl = titleFromUrl.deletingPathExtension()
-                    title = titleFromUrl.lastPathComponent
+                    title = titleFromUrl.lastPathComponent.replacingOccurrences(of: "_", with: " ")
                     attributes["title"] = title
                     return attributes
             }
             if let metadata = document.documentAttributes {
                 if let titleExists = metadata[AnyHashable("Title")] {
                     if let titleIsEmpty = titleExists as? String {
-                        title = titleIsEmpty
+                        title = titleIsEmpty.replacingOccurrences(of: "_", with: " ")
                         attributes["title"] = title
                     }
                 } else {
                     var titleFromUrl = url
                     titleFromUrl = titleFromUrl.deletingPathExtension()
-                    title = titleFromUrl.lastPathComponent
+                    title = titleFromUrl.lastPathComponent.replacingOccurrences(of: "_", with: " ")
                     attributes["title"] = title
                 }
                 if let authorExists = metadata[AnyHashable("Author")] {
