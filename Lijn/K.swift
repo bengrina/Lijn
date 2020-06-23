@@ -13,4 +13,6 @@ struct K {
     static let thumbWidth = 192
     static let metadataFromCalibre = "metadata.opf"
     static let coverFromCalibre = "cover.jpg"
+    static let blankCover = "blankThumbnail"
+    static let blankTitle = "No Title"
 }

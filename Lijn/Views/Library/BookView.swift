@@ -22,19 +22,28 @@ struct BookView: View {
             let coverURL = documentsDirectory.appendingPathComponent(cover)
             do {
                 let imageData = try Data(contentsOf: coverURL)
-                return UIImage(data: imageData) ?? UIImage(imageLiteralResourceName: "blankThumbnail")
+                return UIImage(data: imageData) ?? UIImage(imageLiteralResourceName: K.blankCover)
             } catch {
                 print("Error loading image : \(error)")
-                return UIImage(imageLiteralResourceName: "blankThumbnail")
+                return UIImage(imageLiteralResourceName: K.blankCover)
             }
         } else {
-            return UIImage(imageLiteralResourceName: "blankThumbnail")
+            return UIImage(imageLiteralResourceName: K.blankCover)
         }
     }
     func filePath(_ filePath: String) -> URL {
         let url = documentsScanner.getDocumentsDirectory().appendingPathComponent(filePath)
         return url
     }
+    
+    func titleExists(_ title: String) -> String {
+        if title.isEmpty {
+            return K.blankTitle
+        }
+        else {
+            return title}
+    }
+    
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -73,7 +82,7 @@ struct BookView: View {
                         }
                     }
             }
-            Text(title)
+            Text(titleExists(title))
                 .font(.system(size: 16, weight: .light, design: .default))
                 .foregroundColor(Color(.label))
                 .padding(.top, -9.0)

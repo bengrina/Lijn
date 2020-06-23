@@ -28,46 +28,49 @@ extension URL {
 }
 
 struct DocumentsScanner {
+    
     func addBooksFromDocumentsToDatabase() {
         let files = FileManager.default.urls(for: .documentDirectory, skipsHiddenFiles: true)
         let pdfFiles = files!.filter{ $0.pathExtension == "pdf" }
-        for pdfFile in pdfFiles {
-            let pdfFolder = pdfFile.deletingPathExtension()
-            let potentialPath = pdfFolder.lastPathComponent + "/" + pdfFile.lastPathComponent
-            if fileIsInDatabase(filePath: potentialPath) {
-                // Create directory https://stackoverflow.com/a/26931481/13642472
-                // And move the pdf file there
-                let directoryPath = getDocumentsDirectory().appendingPathComponent(pdfFolder.lastPathComponent)
-                let folderPath = directoryPath.appendingPathComponent(pdfFile.lastPathComponent)
-                if !FileManager.default.fileExists(atPath: directoryPath.absoluteString) {
-                    do {
-                        try FileManager.default.createDirectory(at: directoryPath, withIntermediateDirectories: true, attributes: nil)
-                        try FileManager.default.moveItem(at: pdfFile, to: directoryPath.appendingPathComponent(pdfFile.lastPathComponent))
-                    } catch {
-                        print(error.localizedDescription)
+        DispatchQueue.global(qos: .default).async {
+            for pdfFile in pdfFiles {
+                let pdfFolder = pdfFile.deletingPathExtension()
+                let potentialPath = pdfFolder.lastPathComponent + "/" + pdfFile.lastPathComponent
+                if self.fileIsInDatabase(filePath: potentialPath) {
+                    // Create directory https://stackoverflow.com/a/26931481/13642472
+                    // And move the pdf file there
+                    let directoryPath = self.getDocumentsDirectory().appendingPathComponent(pdfFolder.lastPathComponent)
+                    let folderPath = directoryPath.appendingPathComponent(pdfFile.lastPathComponent)
+                    if !FileManager.default.fileExists(atPath: directoryPath.absoluteString) {
+                        do {
+                            try FileManager.default.createDirectory(at: directoryPath, withIntermediateDirectories: true, attributes: nil)
+                            try FileManager.default.moveItem(at: pdfFile, to: directoryPath.appendingPathComponent(pdfFile.lastPathComponent))
+                        } catch {
+                            print(error.localizedDescription)
+                        }
                     }
-                }
-                if let thumbnail = pdfMetadata.generateThumbnail(url: folderPath) {
-                    if let data = thumbnail.jpegData(compressionQuality: 0.8) {
-                        let filename = directoryPath.appendingPathComponent(K.coverFromCalibre)
-                        try? data.write(to: filename)
+                    if let thumbnail = pdfMetadata.generateThumbnail(url: folderPath) {
+                        if let data = thumbnail.jpegData(compressionQuality: 0.8) {
+                            let filename = directoryPath.appendingPathComponent(K.coverFromCalibre)
+                            try? data.write(to: filename)
+                        }
                     }
-                }
-                let thumbnailPath = pdfFolder.lastPathComponent + "/" + K.coverFromCalibre
-                
-                let metadata = pdfMetadata.getMetadata(url: folderPath)
-                var comicTitle = ""
-                var comicAuthors: [String]?
-                if let title = metadata["title"]{
-                    comicTitle = title!
-                }
-                if let author = metadata["author"]{
-                    if let comicAuthor = author{
-                        comicAuthors?.append(comicAuthor)
+                    let thumbnailPath = pdfFolder.lastPathComponent + "/" + K.coverFromCalibre
+                    
+                    let metadata = pdfMetadata.getMetadata(url: folderPath)
+                    var comicTitle = ""
+                    var comicAuthors: [String]?
+                    if let title = metadata["title"]{
+                        comicTitle = title!
                     }
+                    if let author = metadata["author"]{
+                        if let comicAuthor = author{
+                            comicAuthors?.append(comicAuthor)
+                        }
+                    }
+                    
+                    databaseController.writeToDatabase(file: potentialPath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
                 }
-                
-                databaseController.writeToDatabase(file: potentialPath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
             }
         }
     }
