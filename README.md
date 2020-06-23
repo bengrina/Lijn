@@ -5,7 +5,8 @@
 
 ## Current state
 
-I'm still working on the database and on metadata handling, After that i'll have to resolve threading issues and retain cycles.
+PDF files open correctly, and the app is able to parse medatada from pdf files or a metadata.opf file created by [Calibre](https://calibre-ebook.com/).
+I need to work on CBZ files, and more importantly to address concurrency, parallelism and memory management issues. As of now (23/06/2020), all code is executed on the main thread, and I suppose that there is multiple reference cycles in the app.
 
 ## About
 
@@ -15,7 +16,11 @@ It's my first project, and I will write about it on my [blog](https://bengrina.g
 
 ### Goals
 
-I plan to release a fast and easy to use app. To do that, i'm using Realm as a database, and plan to use MuPdf as the viewer.
+The app has to be fast, easy to use, and well designed.
+
+### Dependencies
+
+- [Realm](https://realm.io/)
 
 ## Screenshots
 
