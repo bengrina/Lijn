@@ -48,7 +48,6 @@ struct DatabaseController {
         
         let bd = BandeDessinee()
         
-        
         bd.filePath = file
         bd.uuid = UUID().uuidString
         

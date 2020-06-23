@@ -14,15 +14,12 @@ let realm = try! Realm()
 let documentsScanner = DocumentsScanner()
 
 class BindableResults<Element>: ObservableObject where Element: RealmSwift.RealmCollectionValue {
-    
     var results: Results<Element>
     private var token: NotificationToken!
-    
     init(results: Results<Element>) {
         self.results = results
         lateInit()
     }
-    
     func lateInit() {
         let realm = try! Realm()
         let bds = realm.objects(BandeDessinee.self)
@@ -30,13 +27,10 @@ class BindableResults<Element>: ObservableObject where Element: RealmSwift.Realm
             self!.results = self!.results
         }
     }
-    
     deinit {
         token.invalidate()
     }
 }
-
-
 
 struct LibraryView: View {
     @ObservedObject var bds = BindableResults<BandeDessinee>(results: try! Realm().objects(BandeDessinee.self))
@@ -45,16 +39,7 @@ struct LibraryView: View {
         UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 20)!]
         UITableView.appearance().separatorColor = .clear
     }
-    
-    @Environment(\.viewController) private var viewControllerHolder:
-    ViewControllerHolder
-    
-    private var viewController: UIViewController? {
-        self.viewControllerHolder.value
-    }
-    
-    
-    
+ 
     var body: some View {
         NavigationView {
             Section {
