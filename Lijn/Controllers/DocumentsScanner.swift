@@ -36,7 +36,8 @@ struct DocumentsScanner {
             for pdfFile in pdfFiles {
                 let pdfFolder = pdfFile.deletingPathExtension()
                 let potentialPath = pdfFolder.lastPathComponent + "/" + pdfFile.lastPathComponent
-                if self.fileIsInDatabase(filePath: potentialPath) {
+                let escapePotentialPath = potentialPath.replacingOccurrences(of: "\'", with: #"\'"#)
+                if self.fileIsInDatabase(filePath: escapePotentialPath) {
                     // Create directory https://stackoverflow.com/a/26931481/13642472
                     // And move the pdf file there
                     let directoryPath = self.getDocumentsDirectory().appendingPathComponent(pdfFolder.lastPathComponent)
@@ -69,7 +70,7 @@ struct DocumentsScanner {
                         }
                     }
                     
-                    databaseController.writeToDatabase(file: potentialPath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
+                    databaseController.writeToDatabase(file: escapePotentialPath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
                 }
             }
         }
@@ -98,8 +99,11 @@ struct DocumentsScanner {
             for bdFile in bdFiles {
                 let bdFileName = bdFile.lastPathComponent
                 let path = dirName + "/" + bdFileName
+                
+                let escapePath = path.replacingOccurrences(of: "\'", with: #"\'"#)
+                
                 var thumbnailPath = ""
-                if fileIsInDatabase(filePath: path) {
+                if fileIsInDatabase(filePath: escapePath) {
                     let metadataToParse = subDir.appendingPathComponent(K.metadataFromCalibre)
                     let coverPath = dirName + "/" + K.coverFromCalibre
                     if fileManager.fileExists(atPath: metadataToParse.path) {
@@ -132,7 +136,7 @@ struct DocumentsScanner {
                             }
                             
                         }
-                        databaseController.writeToDatabase(file: path, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
+                        databaseController.writeToDatabase(file: escapePath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
                     }
                 }
             }
