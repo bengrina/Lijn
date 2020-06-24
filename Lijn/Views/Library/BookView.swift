@@ -86,7 +86,7 @@ struct BookView: View {
                 .font(.system(size: 16, weight: .light, design: .default))
                 .foregroundColor(Color(.label))
                 .padding(.top, -9.0)
-                .frame(width: 192, height: 18)
+                .frame(width: 192, height: 18, alignment: .leading)
             
             
         }.buttonStyle(PlainButtonStyle())

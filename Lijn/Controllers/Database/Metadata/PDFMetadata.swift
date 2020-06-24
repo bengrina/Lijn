@@ -24,6 +24,7 @@ struct PDFMetadata {
                                 height: pageSize.height * scale)
         return page.thumbnail(of: screenSize, for: .cropBox)
     }
+    //MARK: - getMetadata: Gets metadata from a PDF document and returns an array of metadata.
     func getMetadata(url: URL) -> [String:String?] {
         var title = ""
         var author: String?
