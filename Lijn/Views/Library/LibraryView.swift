@@ -10,7 +10,6 @@ import SwiftUI
 import RealmSwift
 import WaterfallGrid
 
-let realm = try! Realm()
 let documentsScanner = DocumentsScanner()
 
 class BindableResults<Element>: ObservableObject where Element: RealmSwift.RealmCollectionValue {

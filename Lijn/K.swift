@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct K {
     static let thumbHeight = 256
@@ -15,4 +16,6 @@ struct K {
     static let coverFromCalibre = "cover.jpg"
     static let blankCover = "blankThumbnail"
     static let blankTitle = "No Title"
+    static let documentsDirectoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    static let libraryDirectoryURL = try! FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 }

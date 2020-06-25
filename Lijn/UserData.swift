@@ -1,9 +1,9 @@
 //
 //  UserData.swift
-//  FullScreenTabView
+//  Lijn
 //
-//  Created by Ali Fakih on 11/29/19.
-//  Copyright © 2019 Ali Fakih. All rights reserved.
+//  Created by Aymane on 07/06/2020.
+//  Copyright © 2020 Aymane Bengrina. All rights reserved.
 //
 
 import Foundation

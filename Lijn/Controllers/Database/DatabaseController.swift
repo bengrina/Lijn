@@ -9,9 +9,6 @@
 import Foundation
 import RealmSwift
 
-//var config = Realm.Configuration(
-//fileURL: Bundle.main.url(forAuxiliaryExecutable: "ee"))
-
 class BandeDessinee: Object, Identifiable {
     
     @objc dynamic var uuid = UUID().uuidString

@@ -34,7 +34,6 @@
 		EBBAA468247DC0400083A607 /* NewYorkExtraLarge-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAA464247DBFFA0083A607 /* NewYorkExtraLarge-Bold.otf */; };
 		EBC8E2142476CB2E00C7B620 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */; };
 		EBE025C724929E7800C27764 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE025C624929E7800C27764 /* UserData.swift */; };
-		EBE4673B2484250000172FBC /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4673A2484250000172FBC /* LibraryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +92,6 @@
 		EBBAA465247DBFFC0083A607 /* NewYorkExtraLarge-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Medium.otf"; sourceTree = "<group>"; };
 		EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
 		EBE025C624929E7800C27764 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		EBE4673A2484250000172FBC /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryController.swift; sourceTree = "<group>"; };
 		F9158B046F5FD14E57B3CC6A /* Pods-Lijn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lijn.release.xcconfig"; path = "Target Support Files/Pods-Lijn/Pods-Lijn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */,
-				EBE4673A2484250000172FBC /* LibraryController.swift */,
 				EB8F3CC5248AC68D00297DA9 /* Metadata */,
 			);
 			path = Database;
@@ -353,7 +350,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Aymane Bengrina";
 				TargetAttributes = {
 					EB120EBD2475A1D90059898C = {
@@ -530,7 +527,6 @@
 			files = (
 				EB0FD7A82490E20600E02966 /* ComicView.swift in Sources */,
 				EB0C6F6024818C2600C43AE0 /* OPFMetadata.swift in Sources */,
-				EBE4673B2484250000172FBC /* LibraryController.swift in Sources */,
 				EB120EF22475A25E0059898C /* LibraryView.swift in Sources */,
 				EB55A3612477111C0067FD53 /* ImportView.swift in Sources */,
 				EB120EC22475A1D90059898C /* AppDelegate.swift in Sources */,
@@ -618,6 +614,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -678,6 +675,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

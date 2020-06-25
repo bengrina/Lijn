@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 let pdfMetadata = PDFMetadata()
 
 extension FileManager {
@@ -77,6 +78,7 @@ struct DocumentsScanner {
     }
     
     func fileIsInDatabase (filePath: String) -> Bool {
+        let realm = try! Realm()
         let bd = realm.objects(BandeDessinee.self).filter("filePath = '\(filePath)'")
         if bd.isEmpty {
             return true
@@ -86,8 +88,7 @@ struct DocumentsScanner {
     }
     func addBooksFromSubfoldersToDatabase() {
         let fileManager = FileManager.default
-        let documentsDirectoryURL =  try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let subDirs = documentsDirectoryURL.subDirectories
+        let subDirs = K.documentsDirectoryURL.subDirectories
         
         for subDir in subDirs {
             
