@@ -20,7 +20,8 @@ The app has to be fast, easy to use, and well designed.
 
 ### Dependencies
 
-- [Realm](https://realm.io/)
+- [Realm](https://realm.io/): Fast and reactive database
+- [WaterfallGrid](https://github.com/paololeonardi/WaterfallGrid): Grid layout view for the library
 
 ## Screenshots
 
