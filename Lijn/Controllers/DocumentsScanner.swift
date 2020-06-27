@@ -28,8 +28,7 @@ extension URL {
     }
 }
 
-struct DocumentsScanner {
-    
+struct DocumentsScanner {    
     func addBooksFromDocumentsToDatabase() {
         let files = FileManager.default.urls(for: .documentDirectory, skipsHiddenFiles: true)
         let pdfFiles = files!.filter{ $0.pathExtension == "pdf" }
@@ -89,55 +88,58 @@ struct DocumentsScanner {
     func addBooksFromSubfoldersToDatabase() {
         let fileManager = FileManager.default
         let subDirs = K.documentsDirectoryURL.subDirectories
+        let squeue = DispatchQueue(label: "squeue.playground.gcd")
         
-        for subDir in subDirs {
-            
-            // Prendre le nom du dossier y ajouter les documents PUIS enregistrer cette URL
-            let dirName = subDir.lastPathComponent
-            let fileUrls = try! fileManager.contentsOfDirectory(at: subDir, includingPropertiesForKeys: nil)
-            let bdFiles = fileUrls.filter { $0.pathExtension == "pdf" || $0.pathExtension == "cbz"}
-            
-            for bdFile in bdFiles {
-                let bdFileName = bdFile.lastPathComponent
-                let path = dirName + "/" + bdFileName
+        squeue.async {
+            for subDir in subDirs {
                 
-                let escapePath = path.replacingOccurrences(of: "\'", with: #"\'"#)
+                // Prendre le nom du dossier y ajouter les documents PUIS enregistrer cette URL
+                let dirName = subDir.lastPathComponent
+                let fileUrls = try! fileManager.contentsOfDirectory(at: subDir, includingPropertiesForKeys: nil)
+                let bdFiles = fileUrls.filter { $0.pathExtension == "pdf" || $0.pathExtension == "cbz"}
                 
-                var thumbnailPath = ""
-                if fileIsInDatabase(filePath: escapePath) {
-                    let metadataToParse = subDir.appendingPathComponent(K.metadataFromCalibre)
-                    let coverPath = dirName + "/" + K.coverFromCalibre
-                    if fileManager.fileExists(atPath: metadataToParse.path) {
-                        // If a metadata.opf file is present in the folder
-                        metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: path, thumbnailUrl: coverPath)
-                    } else {
-                        // If there's no metadata.opf
-                        let metadata = pdfMetadata.getMetadata(url: bdFile)
-                        var comicTitle = ""
-                        var comicAuthors: [String]?
-                        print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")
-                        if bdFile.pathExtension == "pdf" {
-                            if let thumbnail = pdfMetadata.generateThumbnail(url: bdFile) {
-                                if let data = thumbnail.jpegData(compressionQuality: 0.8) {
-                                    let filename = subDir.appendingPathComponent(K.coverFromCalibre)
-                                    try? data.write(to: filename)
-                                    thumbnailPath = dirName + "/" + K.coverFromCalibre
-                                } else {
-                                    thumbnailPath = ""
+                for bdFile in bdFiles {
+                    let bdFileName = bdFile.lastPathComponent
+                    let path = dirName + "/" + bdFileName
+                    
+                    let escapePath = path.replacingOccurrences(of: "\'", with: #"\'"#)
+                    
+                    var thumbnailPath = ""
+                    if self.fileIsInDatabase(filePath: escapePath) {
+                        let metadataToParse = subDir.appendingPathComponent(K.metadataFromCalibre)
+                        let coverPath = dirName + "/" + K.coverFromCalibre
+                        if fileManager.fileExists(atPath: metadataToParse.path) {
+                            // If a metadata.opf file is present in the folder
+                            metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: path, thumbnailUrl: coverPath)
+                        } else {
+                            // If there's no metadata.opf
+                            let metadata = pdfMetadata.getMetadata(url: bdFile)
+                            var comicTitle = ""
+                            var comicAuthors: [String]?
+                            print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")
+                            if bdFile.pathExtension == "pdf" {
+                                if let thumbnail = pdfMetadata.generateThumbnail(url: bdFile) {
+                                    if let data = thumbnail.jpegData(compressionQuality: 0.8) {
+                                        let filename = subDir.appendingPathComponent(K.coverFromCalibre)
+                                        try? data.write(to: filename)
+                                        thumbnailPath = dirName + "/" + K.coverFromCalibre
+                                    } else {
+                                        thumbnailPath = ""
+                                    }
                                 }
-                            }
-                            
-                            if let title = metadata["title"]{
-                                comicTitle = title!
-                            }
-                            if let author = metadata["author"]{
-                                if let comicAuthor = author{
-                                    comicAuthors?.append(comicAuthor)
+                                
+                                if let title = metadata["title"]{
+                                    comicTitle = title!
                                 }
+                                if let author = metadata["author"]{
+                                    if let comicAuthor = author{
+                                        comicAuthors?.append(comicAuthor)
+                                    }
+                                }
+                                
                             }
-                            
+                            databaseController.writeToDatabase(file: escapePath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
                         }
-                        databaseController.writeToDatabase(file: escapePath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
                     }
                 }
             }

@@ -13,6 +13,7 @@ import WaterfallGrid
 let documentsScanner = DocumentsScanner()
 
 class BindableResults<Element>: ObservableObject where Element: RealmSwift.RealmCollectionValue {
+    @EnvironmentObject var userData: UserData
     var results: Results<Element>
     private var token: NotificationToken!
     init(results: Results<Element>) {
@@ -44,7 +45,6 @@ struct LibraryView: View {
             Section {
                 WaterfallGrid(bds.results.sorted(byKeyPath: "title", ascending: true), id: \.uuid) { bd in
                     BookView(thumbnail: bd.thumbnailPath, title: bd.title, filePath: bd.filePath)
-                    
                 }
             }
             .gridStyle(

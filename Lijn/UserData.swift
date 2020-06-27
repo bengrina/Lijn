@@ -11,5 +11,6 @@ import SwiftUI
 
 final class UserData: ObservableObject {
     @Published var showFullScreen = false
+    @Published var refreshLibrary = false
     @Published var filePath = URL(fileURLWithPath: "")
 }
