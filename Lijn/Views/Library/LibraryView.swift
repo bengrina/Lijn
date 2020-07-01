@@ -9,8 +9,10 @@
 import SwiftUI
 import RealmSwift
 import WaterfallGrid
+import SwiftUIPullToRefresh
 
 let documentsScanner = DocumentsScanner()
+
 
 class BindableResults<Element>: ObservableObject where Element: RealmSwift.RealmCollectionValue {
     @EnvironmentObject var userData: UserData
@@ -24,7 +26,7 @@ class BindableResults<Element>: ObservableObject where Element: RealmSwift.Realm
         let realm = try! Realm()
         let bds = realm.objects(BandeDessinee.self)
         token = bds.observe { [weak self] _ in
-            self!.results = self!.results
+            self?.objectWillChange.send()
         }
     }
     deinit {
@@ -39,7 +41,6 @@ struct LibraryView: View {
         UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "New York Extra Large", size: 20)!]
         UITableView.appearance().separatorColor = .clear
     }
- 
     var body: some View {
         NavigationView {
             Section {
