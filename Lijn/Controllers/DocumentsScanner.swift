@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 let pdfMetadata = PDFMetadata()
+let cbzMetadata = CBZMetadata()
 
 extension FileManager {
     func urls(for directory: FileManager.SearchPathDirectory, skipsHiddenFiles: Bool = true ) -> [URL]? {
@@ -137,6 +138,10 @@ struct DocumentsScanner {
                                     }
                                 }
                                 
+                            }else {
+                            if bdFile.pathExtension == "cbz" {
+                                cbzMetadata.generateThumbnail(url: bdFile)
+                            }
                             }
                             databaseController.writeToDatabase(file: escapePath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
                         }

@@ -13,18 +13,29 @@ struct ComicView: View {
     @EnvironmentObject var userData: UserData
     @State var showOverlay = true
     @Environment(\.presentationMode) var presentationMode
+    @State var hideStatusBar = false
     var url: URL
     var body: some View {
         ZStack(alignment: .top){
-            PDFKitRepresentedView(url).onTapGesture {
-                self.showOverlay.toggle()
+            if url.pathExtension == "pdf"{
+                PDFKitRepresentedView(url).onTapGesture {
+                    self.showOverlay.toggle()
+                    self.hideStatusBar.toggle()
+                }
+            }else{
+                VStack{
+                    Text("CBZ DOCUMENT")
+                    Text(url.absoluteString)
+                }
             }
             if showOverlay {
                 ComicOverlay()
             }
-            }
+            
+        }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .statusBar(hidden: hideStatusBar)
     }
 }
 struct PDFKitRepresentedView: UIViewRepresentable {

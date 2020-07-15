@@ -1,26 +1,30 @@
 PODS:
-  - Realm (5.1.0):
-    - Realm/Headers (= 5.1.0)
-  - Realm/Headers (5.1.0)
-  - RealmSwift (5.1.0):
-    - Realm (= 5.1.0)
+  - Realm (5.3.0):
+    - Realm/Headers (= 5.3.0)
+  - Realm/Headers (5.3.0)
+  - RealmSwift (5.3.0):
+    - Realm (= 5.3.0)
   - WaterfallGrid (0.4.0)
+  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - RealmSwift
   - WaterfallGrid (~> 0.4.0)
+  - ZIPFoundation (~> 0.9)
 
 SPEC REPOS:
   trunk:
     - Realm
     - RealmSwift
     - WaterfallGrid
+    - ZIPFoundation
 
 SPEC CHECKSUMS:
-  Realm: bdea546851e37b4cf0a2400cef115c7c26fda488
-  RealmSwift: 70945aa168db93b215c460e9c8ef680261aa28af
+  Realm: 81b533e4d02518e3e36a702d43a716b48bf89ed6
+  RealmSwift: d8954b0c203d532cfa8412ab18e2da01eb071aa4
   WaterfallGrid: 568881d69470c0ffe635732dfafd859db1365989
+  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: d1377596c9031649f2339377f160be82c1f03876
+PODFILE CHECKSUM: 754d064f786718cc57e0b27fd4bbd9f34455c287
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

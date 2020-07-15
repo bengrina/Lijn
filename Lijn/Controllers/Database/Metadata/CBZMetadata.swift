@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import ZIPFoundation
 
 struct CBZMetadata {
     func generateThumbnail(url: URL) {
-        
+        guard let archive = Archive(url: url, accessMode: .read) else  {
+            return
+        }
+        print("ARCHIVE")
+        for item in archive {
+            print(item.path)
+        }
     }
     func getMetadata(url: URL) {
         

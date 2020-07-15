@@ -8,6 +8,7 @@ target 'Lijn' do
   # Pods for Lijn
   pod 'RealmSwift'
   pod 'WaterfallGrid', '~> 0.4.0'
+  pod 'ZIPFoundation', '~> 0.9'
 
   target 'LijnTests' do
     inherit! :search_paths
