@@ -5,8 +5,7 @@
 
 ## Current state
 
-PDF files open correctly, and the app is able to parse medatada from pdf files or a metadata.opf file created by [Calibre](https://calibre-ebook.com/).
-I need to work on CBZ files, and more importantly to address concurrency, parallelism and memory management issues. As of now (23/06/2020), all code is executed on the main thread, and I suppose that there is multiple reference cycles in the app.
+I'm currently working on CBZ support, and on refactoring my code.
 
 ## About
 
