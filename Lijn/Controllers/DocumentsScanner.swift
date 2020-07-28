@@ -89,10 +89,10 @@ struct DocumentsScanner {
     func addBooksFromSubfoldersToDatabase() {
         let fileManager = FileManager.default
         let subDirs = K.documentsDirectoryURL.subDirectories
-        let squeue = DispatchQueue(label: "squeue.playground.gcd")
+        let squeue = DispatchQueue(label: "squeue.subfolders.gcd")
         
         squeue.async {
-            for subDir in subDirs {
+            for subDir in subDirs { // Iterate through the found subfolders in 
                 
                 // Prendre le nom du dossier y ajouter les documents PUIS enregistrer cette URL
                 let dirName = subDir.lastPathComponent
@@ -140,7 +140,9 @@ struct DocumentsScanner {
                                 
                             }else {
                             if bdFile.pathExtension == "cbz" {
+                    
                                 cbzMetadata.generateThumbnail(url: bdFile)
+                                comicTitle = bdFile.lastPathComponent
                             }
                             }
                             databaseController.writeToDatabase(file: escapePath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
