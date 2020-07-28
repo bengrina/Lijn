@@ -20,9 +20,10 @@ extension Entry: Comparable {
 }
 
 struct CBZMetadata {
-    func generateThumbnail(url: URL) {
+    func generateThumbnail(url: URL) -> String {
+        // TODO: Resize thumbnails, they can be way too big
         guard let archive = Archive(url: url, accessMode: .read) else  {
-            return
+            return ""
         }
         
         var sortedArchive = [Entry]()
@@ -34,16 +35,23 @@ struct CBZMetadata {
         sortedArchive.sort()
         
         let workingURL = url.deletingLastPathComponent()
+        var coverType = ""
         var coverURL: URL = URL(fileURLWithPath: "")
         if sortedArchive[0].path.hasSuffix("jpg") || sortedArchive[0].path.hasSuffix("jpeg") {
             coverURL = workingURL.appendingPathComponent(K.coverFromCalibre)
+            coverType = "jpg"
         } else if sortedArchive[0].path.hasSuffix("png") {
             coverURL = workingURL.appendingPathComponent("cover.png")
-            
+            coverType = "png"
+        }
+        do {
+            try archive.extract(sortedArchive[0], to: coverURL)
+        }
+        catch {
+            print(error)
         }
         
-        try! archive.extract(sortedArchive[0], to: coverURL)
-        return
+        return coverType
     }
     func getMetadata(url: URL) {
         

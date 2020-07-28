@@ -51,12 +51,12 @@ struct DocumentsScanner {
                             print(error.localizedDescription)
                         }
                     }
-                    if let thumbnail = pdfMetadata.generateThumbnail(url: folderPath) {
-                        if let data = thumbnail.jpegData(compressionQuality: 0.8) {
-                            let filename = directoryPath.appendingPathComponent(K.coverFromCalibre)
-                            try? data.write(to: filename)
-                        }
-                    }
+                    //                    if let thumbnail = pdfMetadata.generateThumbnail(url: folderPath) {
+                    //                        if let data = thumbnail.jpegData(compressionQuality: 0.8) {
+                    //                            let filename = directoryPath.appendingPathComponent(K.coverFromCalibre)
+                    //                            try? data.write(to: filename)
+                    //                        }
+                    //                    }
                     let thumbnailPath = pdfFolder.lastPathComponent + "/" + K.coverFromCalibre
                     
                     let metadata = pdfMetadata.getMetadata(url: folderPath)
@@ -119,14 +119,11 @@ struct DocumentsScanner {
                             var comicAuthors: [String]?
                             print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")
                             if bdFile.pathExtension == "pdf" {
-                                if let thumbnail = pdfMetadata.generateThumbnail(url: bdFile) {
-                                    if let data = thumbnail.jpegData(compressionQuality: 0.8) {
-                                        let filename = subDir.appendingPathComponent(K.coverFromCalibre)
-                                        try? data.write(to: filename)
-                                        thumbnailPath = dirName + "/" + K.coverFromCalibre
-                                    } else {
-                                        thumbnailPath = ""
-                                    }
+                                if pdfMetadata.generateThumbnail(url: bdFile){
+                                    thumbnailPath = dirName + "/" + K.coverFromCalibre
+                                    print(thumbnailPath)
+                                } else {
+                                    thumbnailPath = ""
                                 }
                                 
                                 if let title = metadata["title"]{
@@ -137,13 +134,19 @@ struct DocumentsScanner {
                                         comicAuthors?.append(comicAuthor)
                                     }
                                 }
-                                
                             }else {
-                            if bdFile.pathExtension == "cbz" {
-                    
-                                cbzMetadata.generateThumbnail(url: bdFile)
-                                comicTitle = bdFile.lastPathComponent
-                            }
+                                if bdFile.pathExtension == "cbz" {
+                                    
+                                    switch cbzMetadata.generateThumbnail(url: bdFile) {
+                                    case "jpg":
+                                        thumbnailPath = dirName + "/" + K.coverFromCalibre
+                                    case "png":
+                                        thumbnailPath = dirName + "/" + "cover.png"
+                                    default :
+                                        thumbnailPath = ""
+                                    }
+                                    comicTitle = bdFile.lastPathComponent
+                                }
                             }
                             databaseController.writeToDatabase(file: escapePath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "unimplemented", serie: "", serieNumber: 0, publishedDate: nil)
                         }

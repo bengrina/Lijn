@@ -12,17 +12,22 @@ import PDFKit
 struct PDFMetadata {
     // https://stackoverflow.com/a/48929065/13642472
     // generateThumbnail(url: URL) -> UIImage?: Generates a thumbnail from a PDF file.
-    func generateThumbnail(url: URL) -> UIImage?{
+    func generateThumbnail(url: URL) -> Bool{
         guard let data = try? Data(contentsOf: url),
             let page = PDFDocument(data: data)?.page(at: 0) else {
-                return nil
+                return false
         }
         let pageSize = page.bounds(for: .mediaBox)
         let pdfScale = CGFloat(K.thumbWidth) / pageSize.width
         let scale = UIScreen.main.scale * pdfScale
         let screenSize = CGSize(width: pageSize.width * scale,
                                 height: pageSize.height * scale)
-        return page.thumbnail(of: screenSize, for: .cropBox)
+        if let thumbnail = page.thumbnail(of: screenSize, for: .cropBox).jpegData(compressionQuality: 0.8) {
+        print(url.deletingLastPathComponent())
+        let thumbURL = url.deletingLastPathComponent().appendingPathComponent(K.coverFromCalibre)
+        try? thumbnail.write(to: thumbURL)
+        }
+        return true
     }
     //MARK: - getMetadata: Gets metadata from a PDF document and returns an array of metadata.
     func getMetadata(url: URL) -> [String:String?] {
