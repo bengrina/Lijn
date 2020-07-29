@@ -30,48 +30,26 @@ extension URL {
 }
 
 struct DocumentsScanner {    
-    func addBooksFromDocumentsToDatabase() {
+    func moveSingleFilesInsideFolders() {
         let files = FileManager.default.urls(for: .documentDirectory, skipsHiddenFiles: true)
-        let pdfFiles = files!.filter{ $0.pathExtension == "pdf" }
+        let comics = files!.filter{ $0.pathExtension == "pdf" || $0.pathExtension == "cbz"}
         DispatchQueue.global(qos: .default).async {
-            for pdfFile in pdfFiles {
-                let pdfFolder = pdfFile.deletingPathExtension()
-                let potentialPath = pdfFolder.lastPathComponent + "/" + pdfFile.lastPathComponent
+            for comic in comics {
+                let pdfFolder = comic.deletingPathExtension()
+                let potentialPath = pdfFolder.lastPathComponent + "/" + comic.lastPathComponent
                 let escapePotentialPath = potentialPath.replacingOccurrences(of: "\'", with: #"\'"#)
                 if self.fileIsInDatabase(filePath: escapePotentialPath) {
                     // Create directory https://stackoverflow.com/a/26931481/13642472
-                    // And move the pdf file there
+                    // And move the file there
                     let directoryPath = self.getDocumentsDirectory().appendingPathComponent(pdfFolder.lastPathComponent)
-                    let folderPath = directoryPath.appendingPathComponent(pdfFile.lastPathComponent)
                     if !FileManager.default.fileExists(atPath: directoryPath.absoluteString) {
                         do {
                             try FileManager.default.createDirectory(at: directoryPath, withIntermediateDirectories: true, attributes: nil)
-                            try FileManager.default.moveItem(at: pdfFile, to: directoryPath.appendingPathComponent(pdfFile.lastPathComponent))
+                            try FileManager.default.moveItem(at: comic, to: directoryPath.appendingPathComponent(comic.lastPathComponent))
                         } catch {
                             print(error.localizedDescription)
                         }
                     }
-                    //                    if let thumbnail = pdfMetadata.generateThumbnail(url: folderPath) {
-                    //                        if let data = thumbnail.jpegData(compressionQuality: 0.8) {
-                    //                            let filename = directoryPath.appendingPathComponent(K.coverFromCalibre)
-                    //                            try? data.write(to: filename)
-                    //                        }
-                    //                    }
-                    let thumbnailPath = pdfFolder.lastPathComponent + "/" + K.coverFromCalibre
-                    
-                    let metadata = pdfMetadata.getMetadata(url: folderPath)
-                    var comicTitle = ""
-                    var comicAuthors: [String]?
-                    if let title = metadata["title"]{
-                        comicTitle = title!
-                    }
-                    if let author = metadata["author"]{
-                        if let comicAuthor = author{
-                            comicAuthors?.append(comicAuthor)
-                        }
-                    }
-                    
-                    databaseController.writeToDatabase(file: escapePotentialPath, title: comicTitle, creators: comicAuthors, thumbnail: thumbnailPath, percentageRead: 0, editor: "", serie: "", serieNumber: 0, publishedDate: nil)
                 }
             }
         }
@@ -86,7 +64,8 @@ struct DocumentsScanner {
             return false
         }
     }
-    func addBooksFromSubfoldersToDatabase() {
+    func addComicsToDatabase() {
+        moveSingleFilesInsideFolders()
         let fileManager = FileManager.default
         let subDirs = K.documentsDirectoryURL.subDirectories
         let squeue = DispatchQueue(label: "squeue.subfolders.gcd")
