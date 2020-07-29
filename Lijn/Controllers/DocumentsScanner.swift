@@ -99,7 +99,7 @@ struct DocumentsScanner {
                             print("No metadata file found at \(subDir.appendingPathComponent(K.metadataFromCalibre))")
                             if bdFile.pathExtension == "pdf" {
                                 if pdfMetadata.generateThumbnail(url: bdFile){
-                                    thumbnailPath = dirName + "/" + K.coverFromCalibre
+                                    thumbnailPath = dirName + "/" + "cover.png"
                                     print(thumbnailPath)
                                 } else {
                                     thumbnailPath = ""
@@ -116,14 +116,8 @@ struct DocumentsScanner {
                             }else {
                                 if bdFile.pathExtension == "cbz" {
                                     
-                                    switch cbzMetadata.generateThumbnail(url: bdFile) {
-                                    case "jpg":
-                                        thumbnailPath = dirName + "/" + K.coverFromCalibre
-                                    case "png":
-                                        thumbnailPath = dirName + "/" + "cover.png"
-                                    default :
-                                        thumbnailPath = ""
-                                    }
+                                    cbzMetadata.generateThumbnail(url: bdFile)
+                                    thumbnailPath = dirName + "/" + "cover.png"
                                     comicTitle = bdFile.lastPathComponent
                                 }
                             }

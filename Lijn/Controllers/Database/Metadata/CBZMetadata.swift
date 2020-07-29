@@ -9,6 +9,8 @@
 import Foundation
 import ZIPFoundation
 
+let imageResizer = ImageResizer()
+
 extension Entry: Comparable {
     public static func < (lhs: Entry, rhs: Entry) -> Bool {
         if lhs.path != rhs.path {
@@ -20,10 +22,10 @@ extension Entry: Comparable {
 }
 
 struct CBZMetadata {
-    func generateThumbnail(url: URL) -> String {
+    func generateThumbnail(url: URL){
         // TODO: Resize thumbnails, they can be way too big
         guard let archive = Archive(url: url, accessMode: .read) else  {
-            return ""
+            return
         }
         
         var sortedArchive = [Entry]()
@@ -38,20 +40,23 @@ struct CBZMetadata {
         var coverType = ""
         var coverURL: URL = URL(fileURLWithPath: "")
         if sortedArchive[0].path.hasSuffix("jpg") || sortedArchive[0].path.hasSuffix("jpeg") {
-            coverURL = workingURL.appendingPathComponent(K.coverFromCalibre)
+            coverURL = workingURL.appendingPathComponent("tempCover.jpg")
             coverType = "jpg"
         } else if sortedArchive[0].path.hasSuffix("png") {
-            coverURL = workingURL.appendingPathComponent("cover.png")
+            coverURL = workingURL.appendingPathComponent("tempCover.png")
             coverType = "png"
         }
         do {
+            let testURL = workingURL.appendingPathComponent("cover.png")
             try archive.extract(sortedArchive[0], to: coverURL)
+            let dimensions = CGSize(width: CGFloat(integerLiteral: K.thumbHeight), height: CGFloat(integerLiteral: K.thumbWidth))
+            try? imageResizer.resizedImage(at: coverURL, for: dimensions)?.pngData()!.write(to: testURL)
+            let fileManager = FileManager.default
+            try? fileManager.removeItem(at: coverURL)
         }
         catch {
             print(error)
         }
-        
-        return coverType
     }
     func getMetadata(url: URL) {
         

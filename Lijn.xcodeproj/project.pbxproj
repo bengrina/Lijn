@@ -37,6 +37,7 @@
 		EBBAA468247DC0400083A607 /* NewYorkExtraLarge-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAA464247DBFFA0083A607 /* NewYorkExtraLarge-Bold.otf */; };
 		EBC8E2142476CB2E00C7B620 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */; };
 		EBE025C724929E7800C27764 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE025C624929E7800C27764 /* UserData.swift */; };
+		EBE22B4D24D1638500557B4A /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE22B4C24D1638500557B4A /* ImageResizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		EBBAA465247DBFFC0083A607 /* NewYorkExtraLarge-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkExtraLarge-Medium.otf"; sourceTree = "<group>"; };
 		EBC8E2132476CB2E00C7B620 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
 		EBE025C624929E7800C27764 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		EBE22B4C24D1638500557B4A /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		F9158B046F5FD14E57B3CC6A /* Pods-Lijn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lijn.release.xcconfig"; path = "Target Support Files/Pods-Lijn/Pods-Lijn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +233,7 @@
 			children = (
 				EBC8E2102476C3FA00C7B620 /* Database */,
 				EB28D2A3248A3ABB00012380 /* DocumentsScanner.swift */,
+				EBE22B4C24D1638500557B4A /* ImageResizer.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				EB120EC42475A1D90059898C /* SceneDelegate.swift in Sources */,
 				EB8E98B324BF51AC00876044 /* PDFKitRepresentedView.swift in Sources */,
 				EB8F3CC7248AC6BD00297DA9 /* PDFMetadata.swift in Sources */,
+				EBE22B4D24D1638500557B4A /* ImageResizer.swift in Sources */,
 				EB28D2A4248A3ABB00012380 /* DocumentsScanner.swift in Sources */,
 				EB120EC62475A1D90059898C /* ContentView.swift in Sources */,
 				EBE025C724929E7800C27764 /* UserData.swift in Sources */,

@@ -10,8 +10,8 @@ import Foundation
 import RealmSwift
 
 struct K {
-    static let thumbHeight = 256
-    static let thumbWidth = 192
+    static let thumbHeight = 1024
+    static let thumbWidth = 768
     static let metadataFromCalibre = "metadata.opf"
     static let coverFromCalibre = "cover.jpg"
     static let blankCover = "blankThumbnail"
