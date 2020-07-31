@@ -14,6 +14,7 @@ struct ComicView: View {
     @State var showOverlay = true
     @Environment(\.presentationMode) var presentationMode
     @State var hideStatusBar = false
+    @State private var index: Int = 0
     var url: URL
     var body: some View {
         ZStack(alignment: .top){
@@ -23,10 +24,8 @@ struct ComicView: View {
                     self.hideStatusBar.toggle()
                 }
             }else{
-                VStack{
-                    Text("CBZ DOCUMENT")
-                    Text(url.absoluteString)
-                }
+                CBZView(url)
+
             }
             if showOverlay {
                 ComicOverlay()

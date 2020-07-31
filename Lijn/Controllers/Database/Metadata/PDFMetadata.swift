@@ -23,7 +23,7 @@ struct PDFMetadata {
         let screenSize = CGSize(width: pageSize.width * scale,
                                 height: pageSize.height * scale)
         if let thumbnail = page.thumbnail(of: screenSize, for: .cropBox).pngData() {
-        let thumbURL = url.deletingLastPathComponent().appendingPathComponent("cover.png")
+        let thumbURL = url.deletingLastPathComponent().appendingPathComponent(K.generatedCover)
         try? thumbnail.write(to: thumbURL)
         }
         return true

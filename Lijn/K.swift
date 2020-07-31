@@ -13,7 +13,8 @@ struct K {
     static let thumbHeight = 1024
     static let thumbWidth = 768
     static let metadataFromCalibre = "metadata.opf"
-    static let coverFromCalibre = "cover.jpg"
+    static let calibreCover = "cover.jpg"
+    static let generatedCover = "cover.png"
     static let blankCover = "blankThumbnail"
     static let blankTitle = "No Title"
     static let documentsDirectoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)

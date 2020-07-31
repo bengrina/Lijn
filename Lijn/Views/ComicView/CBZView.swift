@@ -9,14 +9,26 @@
 import SwiftUI
 import ZIPFoundation
 
+let cbzViewController = CBZViewController()
+
 struct CBZView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    let url: URL
+    let pages: [Entry]
+    
+    init(_ url: URL) {
+        self.url = url
+        pages = cbzViewController.sortArchiveFromURL(url)!
     }
+    
+    
+    var body: some View {
+        ScrollView {
+            ForEach(pages, id: \.path) { (page) in
+                PageView(url: self.url, page: page)
+            }
+        }
+//        Image(uiImage: cbzViewController.decodeImage(archive: url, entry: pages[0]))
+    }
+    
 }
 
-struct CBZView_Previews: PreviewProvider {
-    static var previews: some View {
-        CBZView()
-    }
-}

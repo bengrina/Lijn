@@ -87,7 +87,7 @@ struct DocumentsScanner {
                     var thumbnailPath = ""
                     if self.fileIsInDatabase(filePath: escapePath) {
                         let metadataToParse = subDir.appendingPathComponent(K.metadataFromCalibre)
-                        let coverPath = dirName + "/" + K.coverFromCalibre
+                        let coverPath = dirName + "/" + K.calibreCover
                         if fileManager.fileExists(atPath: metadataToParse.path) {
                             // If a metadata.opf file is present in the folder
                             metadataController.addMetadataToDatabase(url: metadataToParse, fileUrl: path, thumbnailUrl: coverPath)

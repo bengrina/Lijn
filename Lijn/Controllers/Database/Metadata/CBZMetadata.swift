@@ -23,36 +23,24 @@ extension Entry: Comparable {
 
 struct CBZMetadata {
     func generateThumbnail(url: URL){
-        // TODO: Resize thumbnails, they can be way too big
         guard let archive = Archive(url: url, accessMode: .read) else  {
             return
         }
-        
-        var sortedArchive = [Entry]()
-        for item in archive {
-            if item.path.hasSuffix("jpg") || item.path.hasSuffix("png"){
-                sortedArchive.append(item)
-            }
-        }
-        sortedArchive.sort()
-        
+        let sortedArchive = sortArchive(archive)
         let workingURL = url.deletingLastPathComponent()
-        var coverType = ""
         var coverURL: URL = URL(fileURLWithPath: "")
         if sortedArchive[0].path.hasSuffix("jpg") || sortedArchive[0].path.hasSuffix("jpeg") {
             coverURL = workingURL.appendingPathComponent("tempCover.jpg")
-            coverType = "jpg"
         } else if sortedArchive[0].path.hasSuffix("png") {
             coverURL = workingURL.appendingPathComponent("tempCover.png")
-            coverType = "png"
         }
         do {
-            let testURL = workingURL.appendingPathComponent("cover.png")
-            try archive.extract(sortedArchive[0], to: coverURL)
+            let testURL = workingURL.appendingPathComponent(K.generatedCover)
+            try _ = archive.extract(sortedArchive[0], to: coverURL)
             let dimensions = CGSize(width: CGFloat(integerLiteral: K.thumbHeight), height: CGFloat(integerLiteral: K.thumbWidth))
-            try? imageResizer.resizedImage(at: coverURL, for: dimensions)?.pngData()!.write(to: testURL)
+            try imageResizer.resizedImage(at: coverURL, for: dimensions)?.pngData()!.write(to: testURL)
             let fileManager = FileManager.default
-            try? fileManager.removeItem(at: coverURL)
+            try fileManager.removeItem(at: coverURL)
         }
         catch {
             print(error)
@@ -61,7 +49,14 @@ struct CBZMetadata {
     func getMetadata(url: URL) {
         
     }
-    func sortArchive(archive: Archive){
-        
+    func sortArchive(_ archive: Archive) -> [Entry] {
+        var sortedArchive = [Entry]()
+        for item in archive {
+            if item.path.hasSuffix("jpg") || item.path.hasSuffix("png"){
+                sortedArchive.append(item)
+            }
+        }
+        sortedArchive.sort()
+        return sortedArchive
     }
 }
